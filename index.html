@@ -1,173 +1,138 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio Data Engineer — data processing, ETL pipelines, SQL, Python, and data warehousing." />
-  <meta name="theme-color" content="#0b1020" />
-  <title>Data Engineer | Personal Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of a Data Engineer">
+  <title>Muhammad Riki Efendi — Data Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-
   <header class="site-header">
-    <nav class="nav container" aria-label="Navigasi utama">
-      <a class="brand" href="#home" aria-label="Kembali ke beranda"><span class="brand-mark">D</span><span>portfolio<span class="accent">.</span></span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">~/rickyefendy.com</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a class="nav-contact" href="#contact">Contact <span>↗</span></a>
+        <a href="#about">ABOUT</a>
+        <a href="#experience">WORK</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#certificates">CERTIFICATES</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☼</button>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero container" id="home">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="status-dot"></span> OPEN TO OPPORTUNITIES</div>
-        <p class="hero-kicker">HELLO, I'M A</p>
-        <h1>Data<br><span class="gradient-text">Engineer.</span></h1>
-        <p class="hero-description">
-          Saya mengolah data mentah menjadi data yang terstruktur dan siap digunakan.
-          Berfokus pada data pipeline, ETL, database, dan solusi pengolahan data yang efisien.
-        </p>
+      <div class="hero-copy">
+        <p class="eyebrow mobile-eyebrow">HELLO, I'M</p>
+        <h1>Muhammad Riki Efendi</h1>
+        <p class="role">DATA ENGINEER</p>
+        <p class="intro">I build structured, reliable, and efficient data pipelines. Interested in data processing, ETL development, and transforming raw data into meaningful insights.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#projects">Explore projects <span>↘</span></a>
-          <a class="button button-ghost" href="#contact">Let's connect <span>↗</span></a>
-        </div>
-        <div class="hero-meta">
-          <span><i class="meta-line"></i> Based in Indonesia</span>
-          <span class="mono">SQL · PYTHON · ETL</span>
+          <a class="button" href="assets/cv.pdf" download>↓ &nbsp; Download CV</a>
+          <a class="email-link" href="mailto:your.email@example.com">rikifendy23@gmail.com ↗</a>
         </div>
       </div>
-
-      <div class="hero-visual reveal" aria-label="Ilustrasi alur data">
-        <div class="visual-top"><span>DATA PIPELINE / OVERVIEW</span><span class="live-label">● LIVE CONCEPT</span></div>
-        <div class="pipeline">
-          <div class="pipe-node source-node">
-            <span class="node-icon">◫</span><div><strong>RAW DATA</strong><small>Source systems</small></div><span class="node-index">01</span>
-          </div>
-          <div class="pipe-connector"><span></span><span></span><span></span></div>
-          <div class="pipe-node process-node">
-            <span class="node-icon">⌘</span><div><strong>TRANSFORM</strong><small>Clean · Validate · Enrich</small></div><span class="node-index">02</span>
-          </div>
-          <div class="pipe-connector"><span></span><span></span><span></span></div>
-          <div class="pipe-node warehouse-node">
-            <span class="node-icon">▤</span><div><strong>DATA WAREHOUSE</strong><small>Structured datasets</small></div><span class="node-index">03</span>
-          </div>
-          <div class="pipe-output"><span class="output-dot"></span> ANALYTICS-READY DATA</div>
+      <div class="hero-visual">
+        <div class="dot-pattern"></div>
+        <div class="portrait-placeholder">
+          <span>YOUR<br>PHOTO</span>
         </div>
-        <div class="visual-footer"><span>ENGINEERED FOR RELIABILITY</span><span class="visual-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
       </div>
-      <a class="scroll-cue" href="#about"><span></span> SCROLL TO EXPLORE</a>
     </section>
 
     <section class="section container" id="about">
-      <div class="section-heading reveal">
-        <p class="section-index">01 / ABOUT ME</p>
-        <h2>Turning data into<br><span class="muted-heading">something useful.</span></h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-copy reveal">
-          <p class="lead">Saya lulusan S1 Sistem Informasi Universitas Amikom Yogyakarta dengan fokus dan pengalaman di bidang pengolahan data dan Data Engineering.</p>
-          <p>Saya memiliki pengalaman menangani kueri kompleks, mengembangkan proses ETL, serta mengolah dan mentransformasi data menggunakan SQL, PL/SQL, PL/pgSQL, Python, dan berbagai teknologi data processing.</p>
-          <p>Dalam pekerjaan, saya terlibat dalam proses ingestion, data cleansing, standardisasi, dan pengelolaan data pada alur data warehouse. Saya menyukai pemecahan masalah teknis dan membangun proses yang efisien, terstruktur, serta mudah dipelihara.</p>
-          <a class="text-link" href="#contact">More about my work <span>↗</span></a>
-        </div>
-        <div class="about-facts reveal">
-          <div class="fact-card"><span class="fact-number">01</span><div><strong>Data Processing</strong><small>Raw data to structured data</small></div></div>
-          <div class="fact-card"><span class="fact-number">02</span><div><strong>ETL Development</strong><small>Ingestion and transformation</small></div></div>
-          <div class="fact-card"><span class="fact-number">03</span><div><strong>Database</strong><small>Querying and stored procedures</small></div></div>
-          <div class="fact-note"><span class="note-symbol">✳</span><p>Curious by nature.<br>Structured by design.</p></div>
-        </div>
-      </div>
+      <div class="section-heading"><span>ABOUT</span><i></i></div>
+      <p class="about-text">I'm a graduate of Information Systems with an interest in Data Engineering. I enjoy working with SQL, Python, and data integration tools to build data workflows, perform data transformation, and maintain data quality. I’m always learning and improving the way data is processed and delivered.</p>
     </section>
 
-    <section class="section section-alt" id="skills">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-index">02 / TECHNICAL SKILLS</p>
-          <h2>Tools I work <span class="muted-heading">with.</span></h2>
-          <p class="section-intro">Teknologi yang pernah digunakan dalam pekerjaan maupun pengembangan project.</p>
+    <section class="section container" id="experience">
+      <div class="section-heading"><span>WORK</span><i></i></div>
+      <article class="timeline-item">
+        <div class="timeline-meta"><span>2022 — PRESENT</span><span>YOGYAKARTA</span></div>
+        <div>
+          <h2>Data / Backend Developer</h2>
+          <p class="muted">PT Solusi 247</p>
+          <p>Working on backend development and data engineering tasks, focusing on database management, data processing, and ETL development. Involved in building and maintaining data workflows, developing complex SQL queries, transforming raw data into structured datasets, and supporting data integration processes using Python, SQL, Apache NiFi, and PySpark.</p>
         </div>
-        <div class="skills-grid">
-          <article class="skill-card reveal"><div class="skill-icon">⌘</div><h3>Programming</h3><p>Python · SQL · PHP</p><div class="skill-tags"><span>Data scripting</span><span>Backend logic</span></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">▤</div><h3>Database</h3><p>Oracle · PostgreSQL</p><div class="skill-tags"><span>PL/SQL</span><span>PL/pgSQL</span></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">⇄</div><h3>Data Engineering</h3><p>Apache NiFi · PySpark</p><div class="skill-tags"><span>ETL</span><span>Data pipeline</span></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">▦</div><h3>Big Data Ecosystem</h3><p>Hive · HDFS · ORC</p><div class="skill-tags"><span>Bronze / Silver</span><span>Data warehouse</span></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">⌁</div><h3>Data Observability</h3><p>OpenLineage · OpenMetadata</p><div class="skill-tags"><span>Lineage concepts</span><span>Metadata</span></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">⎇</div><h3>Development Tools</h3><p>Git · CI/CD · Linux</p><div class="skill-tags"><span>Version control</span><span>Deployment basics</span></div></article>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-meta"><span>2018 — 2022</span><span>YOGYAKARTA</span></div>
+        <div>
+          <h2>Education — Information Systems</h2>
+          <p class="muted">Universitas Amikom Yogyakarta</p>
+          <p>Assisted lecturers in teaching and delivering course materials for Database Systems, Introduction to Web Programming, and Introduction to Information Technology. Prepared assignments and learning materials, conducted presentations to explain course topics, guided students during learning activities, and managed student grades and academic records.</p>
         </div>
-        <p class="skills-footnote">Skill list ini menggambarkan teknologi yang pernah digunakan; tingkat pengalaman dapat berbeda pada tiap tools.</p>
-      </div>
+      </article>
     </section>
 
     <section class="section container" id="projects">
-      <div class="section-heading reveal">
-        <p class="section-index">03 / SELECTED PROJECTS</p>
-        <h2>Things I've <span class="muted-heading">worked on.</span></h2>
-        <p class="section-intro">Contoh project yang dapat dikembangkan sebagai demonstrasi kemampuan. Gunakan dataset publik atau dummy untuk versi portfolio.</p>
+      <div class="section-heading"><span>PROJECTS</span><i></i></div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-number">01 / Inves Dashboard</div>
+          <h2>Frontend Developer</h2>
+		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
+          <p>Developed and maintained web application interfaces using PHP and CodeIgniter 3. Responsible for designing and implementing user interfaces, developing and integrating REST APIs, and managing database operations using PostgreSQL (PGSQL). Worked on backend logic, SQL queries, and data integration to ensure efficient communication between application components and database systems.</p>
+          <div class="tags"><span>CodeIgniter 3</span><span>PostgreSQL</span><span>Putty</span></div>
+          <a href="#" class="project-link">VIEW PROJECT ↗</a>
+        </article>
+        <article class="project-card">
+          <div class="project-number">02 / TDirect Dashboard</div>
+          <h2>Developer PL/SQL</h2>
+		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
+          <p>Developed and maintained complex SQL queries, stored procedures, functions, and database views using Oracle PL/SQL. Responsible for implementing data processing logic based on predefined business rules and calculation formulas, ensuring data accuracy and consistency, and validating query results to ensure that processed data is correctly consumed by downstream applications and reporting systems.</p>
+          <div class="tags"><span>Oracle</span><span>PL/SQL</span><span>Excel</span></div>
+          <a href="#" class="project-link">VIEW PROJECT ↗</a>
+        </article>
+        <article class="project-card">
+          <div class="project-number">03 / Dedicated Standarisasi Framework </div>
+          <h2>ETL Developer</h2>
+		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
+          <p>Developed and maintained ETL workflows using Apache NiFi to support data integration and processing across different data sources and destinations. Responsible for implementing direct data movement between systems, performing data transformation using custom scripts, and applying query-based transformations to process and structure datasets according to business requirements. Ensured data consistency, accuracy, and reliability throughout the ETL pipeline.</p>
+          <div class="tags"><span>Apache NiFi</span><span>Python</span><span>Putty</span></div>
+          <a href="#" class="project-link">VIEW PROJECT ↗</a>
+        </article>
+		<article class="project-card">
+          <div class="project-number">04 / Pengadaan Core Data Management </div>
+          <h2>ETL Developer</h2>
+		  <div class="project-number"> Client: Kementerian Komunikasi dan Digital Republik Indonesia </div>
+          <p>Developed ETL pipelines using Python and PySpark to transform raw datasets into structured data. Applied Bronze, Silver, and Fact data layers for data processing and modeling. Implemented data cleansing, transformation, and validation, while integrating OpenMetadata to capture and track data lineage, providing visibility into data flow and dependencies across the pipeline.</p>
+          <div class="tags"><span>Apache Spark</span><span>Openmetadata</span><span>HDFS</span><span>Airflow</span></div>
+          <a href="#" class="project-link">VIEW PROJECT ↗</a>
+        </article>
       </div>
-      <div class="projects-list">
-        <article class="project-card reveal">
-          <div class="project-visual project-visual-one"><div class="mini-window"><div class="window-bar"><i></i><i></i><i></i><span>pipeline.py</span></div><div class="code-lines"><b>01</b><span>read_source()</span><b>02</b><span>clean_data()</span><b>03</b><span>transform()</span><b>04</b><span>write_orc()</span></div></div><span class="project-visual-label">01 / PIPELINE</span></div>
-          <div class="project-info"><div class="project-topline"><span>DATA ENGINEERING</span><span>DEMO PROJECT</span></div><h3>Batch ETL Pipeline</h3><p>Pipeline demonstrasi untuk membaca dataset, melakukan cleansing dan transformasi, lalu menyimpan hasil terstruktur ke data warehouse.</p><div class="project-stack"><span>Python</span><span>PySpark</span><span>Hive</span><span>ORC</span></div><a class="text-link project-link" href="#contact">Project details <span>↗</span></a></div>
-        </article>
-        <article class="project-card reveal">
-          <div class="project-visual project-visual-two"><div class="schema-box"><div class="schema-dim">dim_region</div><div class="schema-fact">fact_connectivity</div><div class="schema-dim">dim_period</div><div class="schema-link"></div></div><span class="project-visual-label">02 / DATA MODEL</span></div>
-          <div class="project-info"><div class="project-topline"><span>DATA WAREHOUSING</span><span>DEMO PROJECT</span></div><h3>Star Schema Modeling</h3><p>Contoh pemodelan dimensional dengan tabel fact dan dimension untuk mendukung kebutuhan analisis dan pelaporan.</p><div class="project-stack"><span>SQL</span><span>PySpark</span><span>Star Schema</span><span>ETL</span></div><a class="text-link project-link" href="#contact">Project details <span>↗</span></a></div>
-        </article>
-        <article class="project-card reveal">
-          <div class="project-visual project-visual-three"><div class="nifi-flow"><span>INPUT</span><i>→</i><span>PROCESS</span><i>→</i><span>OUTPUT</span></div><div class="flow-caption">DATA INTEGRATION FLOW</div><span class="project-visual-label">03 / DATA INTEGRATION</span></div>
-          <div class="project-info"><div class="project-topline"><span>DATA INTEGRATION</span><span>DEMO PROJECT</span></div><h3>Data Ingestion & Validation</h3><p>Contoh alur integrasi untuk membaca data, memetakan field, memvalidasi format, dan memisahkan record yang gagal diproses.</p><div class="project-stack"><span>Apache NiFi</span><span>Python</span><span>Data Quality</span></div><a class="text-link project-link" href="#contact">Project details <span>↗</span></a></div>
-        </article>
-      </div>
-      <p class="project-disclaimer">Catatan: kartu di atas adalah konsep/demo portfolio, bukan klaim bahwa repository publiknya sudah tersedia. Tambahkan tautan GitHub setelah project demonstrasi selesai dibuat.</p>
     </section>
 
-    <section class="section section-alt" id="experience">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-index">04 / EXPERIENCE</p>
-          <h2>Learning through <span class="muted-heading">real work.</span></h2>
-        </div>
-        <div class="experience-layout">
-          <div class="experience-intro reveal"><span class="experience-mark">✳</span><p>Pengalaman profesional dalam pengolahan data dan pengembangan solusi berbasis database.</p></div>
-          <div class="timeline reveal">
-            <div class="timeline-item"><span class="timeline-dot"></span><div class="timeline-meta">DATA ENGINEERING / DATA PROCESSING</div><h3>Data Pipeline & Database Development</h3><p>Terlibat dalam pengolahan data, pengembangan proses ETL, transformasi data, serta penggunaan teknologi database dan big data untuk mendukung kebutuhan pengolahan dan analisis.</p><div class="project-stack"><span>SQL</span><span>Python</span><span>NiFi</span><span>PySpark</span><span>Hive</span></div></div>
-            <div class="timeline-item education-item"><span class="timeline-dot"></span><div class="timeline-meta">EDUCATION</div><h3>S1 Sistem Informasi</h3><p>Universitas Amikom Yogyakarta</p></div>
-          </div>
-        </div>
+    <section class="section container" id="certificates">
+      <div class="section-heading"><span>CERTIFICATES</span><i></i></div>
+      <div class="certificate-row">
+        <div><h2>Certificate Name</h2><p class="muted">Issuing Organization · 202X</p></div>
+        <a href="#" class="project-link">VIEW ↗</a>
       </div>
-    </section>
-
-    <section class="contact-section container" id="contact">
-      <div class="contact-panel reveal">
-        <div class="contact-orb"></div>
-        <p class="section-index">05 / GET IN TOUCH</p>
-        <h2>Let's build something<br><span class="gradient-text">meaningful with data.</span></h2>
-        <p class="contact-copy">Terbuka untuk kesempatan dan kolaborasi di bidang Data Engineering, ETL, dan Database Development.</p>
-        <div class="contact-actions">
-          <a class="button button-primary" id="emailLink" href="mailto:your.email@example.com">Send me an email <span>↗</span></a>
-          <a class="button button-ghost" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-          <a class="button button-ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
-        </div>
-        <p class="contact-placeholder">Ganti alamat email dan tautan profil dengan akun milikmu sebelum dipublikasikan.</p>
+      <div class="certificate-row">
+        <div><h2>Course / Training Name</h2><p class="muted">Issuing Organization · 202X</p></div>
+        <a href="#" class="project-link">VIEW ↗</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer container"><a class="brand" href="#home"><span class="brand-mark">D</span><span>portfolio<span class="accent">.</span></span></a><p>Designed & built with curiosity. <span id="currentYear"></span></p><a href="#home" class="back-top">BACK TO TOP ↑</a></footer>
+  <footer class="footer container">
+    <span>© <span id="year"></span> Muhammad Riki Efendi</span>
+    <span>Thank You</span>
+  </footer>
+
+  <div class="social-dock" aria-label="Social links">
+    <a href="https://github.com/Riki157" aria-label="GitHub" title="GitHub">⌘</a>
+    <a href="https://www.linkedin.com/in/muhammad-riki-efendi-10b419231/" aria-label="LinkedIn" title="LinkedIn">in</a>
+    <a href="https://instagram.com/rickyefendy_123" aria-label="Instagram" title="Instagram">◎</a>
+    <a href="mailto:rikifendy23@gmail.com" aria-label="Email" title="Email">✉</a>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
