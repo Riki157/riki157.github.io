@@ -1,138 +1,292 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal portfolio of a Data Engineer">
-  <title>Muhammad Riki Efendi — Data Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home">~/rickyefendy</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#about">ABOUT</a>
-        <a href="#experience">WORK</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#certificates">CERTIFICATES</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☼</button>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow mobile-eyebrow">HELLO, I'M</p>
-        <h1>Muhammad Riki Efendi</h1>
-        <p class="role">DATA ENGINEER</p>
-        <p class="intro">I build structured, reliable, and efficient data pipelines. Interested in data processing, ETL development, and transforming raw data into meaningful insights.</p>
-        <div class="hero-actions">
-          <a class="button" href="assets/cv.pdf" download>↓ &nbsp; Download CV</a>
-          <a class="email-link" href="mailto:your.email@example.com">rikifendy23@gmail.com ↗</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="dot-pattern"></div>
-        <div class="portrait-placeholder">
-          <span>YOUR<br>PHOTO</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="about">
-      <div class="section-heading"><span>ABOUT</span><i></i></div>
-      <p class="about-text">I'm a graduate of Information Systems with an interest in Data Engineering. I enjoy working with SQL, Python, and data integration tools to build data workflows, perform data transformation, and maintain data quality. I’m always learning and improving the way data is processed and delivered.</p>
-    </section>
-
-    <section class="section container" id="experience">
-      <div class="section-heading"><span>WORK</span><i></i></div>
-      <article class="timeline-item">
-        <div class="timeline-meta"><span>2022 — PRESENT</span><span>YOGYAKARTA</span></div>
-        <div>
-          <h2>Data / Backend Developer</h2>
-          <p class="muted">PT Solusi 247</p>
-          <p>Working on backend development and data engineering tasks, focusing on database management, data processing, and ETL development. Involved in building and maintaining data workflows, developing complex SQL queries, transforming raw data into structured datasets, and supporting data integration processes using Python, SQL, Apache NiFi, and PySpark.</p>
-        </div>
-      </article>
-      <article class="timeline-item">
-        <div class="timeline-meta"><span>2018 — 2022</span><span>YOGYAKARTA</span></div>
-        <div>
-          <h2>Education — Information Systems</h2>
-          <p class="muted">Universitas Amikom Yogyakarta</p>
-          <p>Assisted lecturers in teaching and delivering course materials for Database Systems, Introduction to Web Programming, and Introduction to Information Technology. Prepared assignments and learning materials, conducted presentations to explain course topics, guided students during learning activities, and managed student grades and academic records.</p>
-        </div>
-      </article>
-    </section>
-
-    <section class="section container" id="projects">
-      <div class="section-heading"><span>PROJECTS</span><i></i></div>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-number">01 / Inves Dashboard</div>
-          <h2>Frontend Developer</h2>
-		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
-          <p>Developed and maintained web application interfaces using PHP and CodeIgniter 3. Responsible for designing and implementing user interfaces, developing and integrating REST APIs, and managing database operations using PostgreSQL (PGSQL). Worked on backend logic, SQL queries, and data integration to ensure efficient communication between application components and database systems.</p>
-          <div class="tags"><span>CodeIgniter 3</span><span>PostgreSQL</span><span>Putty</span></div>
-          <a href="#" class="project-link">VIEW PROJECT ↗</a>
-        </article>
-        <article class="project-card">
-          <div class="project-number">02 / TDirect Dashboard</div>
-          <h2>Developer PL/SQL</h2>
-		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
-          <p>Developed and maintained complex SQL queries, stored procedures, functions, and database views using Oracle PL/SQL. Responsible for implementing data processing logic based on predefined business rules and calculation formulas, ensuring data accuracy and consistency, and validating query results to ensure that processed data is correctly consumed by downstream applications and reporting systems.</p>
-          <div class="tags"><span>Oracle</span><span>PL/SQL</span><span>Excel</span></div>
-          <a href="#" class="project-link">VIEW PROJECT ↗</a>
-        </article>
-        <article class="project-card">
-          <div class="project-number">03 / Dedicated Standarisasi Framework </div>
-          <h2>ETL Developer</h2>
-		  <div class="project-number"> Client: Telekomunikasi Selluler </div>
-          <p>Developed and maintained ETL workflows using Apache NiFi to support data integration and processing across different data sources and destinations. Responsible for implementing direct data movement between systems, performing data transformation using custom scripts, and applying query-based transformations to process and structure datasets according to business requirements. Ensured data consistency, accuracy, and reliability throughout the ETL pipeline.</p>
-          <div class="tags"><span>Apache NiFi</span><span>Python</span><span>Putty</span></div>
-          <a href="#" class="project-link">VIEW PROJECT ↗</a>
-        </article>
-		<article class="project-card">
-          <div class="project-number">04 / Pengadaan Core Data Management </div>
-          <h2>ETL Developer</h2>
-		  <div class="project-number"> Client: Kementerian Komunikasi dan Digital Republik Indonesia </div>
-          <p>Developed ETL pipelines using Python and PySpark to transform raw datasets into structured data. Applied Bronze, Silver, and Fact data layers for data processing and modeling. Implemented data cleansing, transformation, and validation, while integrating OpenMetadata to capture and track data lineage, providing visibility into data flow and dependencies across the pipeline.</p>
-          <div class="tags"><span>Apache Spark</span><span>Openmetadata</span><span>HDFS</span><span>Airflow</span></div>
-          <a href="#" class="project-link">VIEW PROJECT ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section container" id="certificates">
-      <div class="section-heading"><span>CERTIFICATES</span><i></i></div>
-      <div class="certificate-row">
-        <div><h2>Certificate Name</h2><p class="muted">Issuing Organization · 202X</p></div>
-        <a href="#" class="project-link">VIEW ↗</a>
-      </div>
-      <div class="certificate-row">
-        <div><h2>Course / Training Name</h2><p class="muted">Issuing Organization · 202X</p></div>
-        <a href="#" class="project-link">VIEW ↗</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer container">
-    <span>© <span id="year"></span> Muhammad Riki Efendi</span>
-    <span>Thank You</span>
-  </footer>
-
-  <div class="social-dock" aria-label="Social links">
-    <a href="https://github.com/Riki157" aria-label="GitHub" title="GitHub">⌘</a>
-    <a href="https://www.linkedin.com/in/muhammad-riki-efendi-10b419231/" aria-label="LinkedIn" title="LinkedIn">in</a>
-    <a href="https://instagram.com/ricky_efendy123" aria-label="Instagram" title="Instagram">◎</a>
-    <a href="mailto:rikifendy23@gmail.com" aria-label="Email" title="Email">✉</a>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Muhammad Riki Efendi | Data Engineer</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div id="progress"></div>
+<header>
+  <nav class="wrap nav">
+    <a class="brand" href="#home" aria-label="Riki Efendi Home">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://w3.org" style="vertical-align: middle; margin-right: 4px;">
+        <!-- Bingkai segi enam / sudut tech -->
+        <rect x="2" y="2" width="28" height="28" rx="7" stroke="currentColor" stroke-width="2.2"/>
+        <!-- Monogram R tegas dengan aksen node data -->
+        <path d="M10.5 22.5V9.5H17C19.2091 9.5 21 11.2909 21 13.5C21 15.7091 19.2091 17.5 17 17.5H10.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.5 17.5L21.5 22.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22.5" cy="9.5" r="1.8" fill="currentColor"/>
+      </svg>
+      Riki<span>Efendi.dev</span>
+    </a>
+    <button id="menu" aria-label="Menu">☰</button>
+    <div id="links">
+      <a href="#about">ABOUT</a>
+      <a href="#experience">EXPERIENCE</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#toolbox">TOOLBOX</a>
+      <a href="#contact">CONTACT</a>
+      <button id="theme" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+</header>
+<main><section class="hero wrap" id="home"><div><div class="kicker"><i></i> DATA ENGINEER · PORTFOLIO 2026</div><h1>Turning raw data<br><em>into something useful.</em></h1><p class="lead">I'm <strong>Muhammad Riki Efendi</strong> — a Data Engineer focused on ETL development, data transformation, database programming, and building reliable data workflows.</p><div class="actions"><a class="btn primary" href="#projects">Explore projects ↘</a></div><p class="contactline">Yogyakarta, Indonesia <span>•</span> <a href="mailto:rikifendy23@gmail.com">rikifendy23@gmail.com ↗</a></p></div><div class="visual"><div class="orbit o1"></div><div class="orbit o2"></div><div class="profile"><small>PROFILE <i></i></small><div class="avatar">RE</div><h3>Muhammad Riki Efendi</h3><p>DATA ENGINEER</p><small class="bottom">SQL / PYTHON / ETL <span>↗</span></small></div></div></section>
+<div class="ticker"><div>SQL　✳　PYTHON　✳　PYSPARK　✳　APACHE NIFI　✳　ORACLE　✳　POSTGRESQL　✳　HIVE　✳　OPENMETADATA　✳　SQL　✳　PYTHON　✳　PYSPARK　✳　APACHE NIFI　✳　ORACLE　✳　POSTGRESQL　✳　HIVE　✳　OPENMETADATA　✳</div></div>
+<section class="wrap section" id="about">
+  <label>01 / ABOUT ME</label>
+  <div class="two">
+    <h2>Curious about data.<br><span>Serious about quality.</span></h2>
+    <div>
+      <p>I enjoy building structured and maintainable data solutions — from writing complex database queries to developing ETL pipelines and organizing datasets for analytics.</p>
+      <p class="dim">My work spans database development, data integration, transformation, and data modeling. I value accuracy, clear logic, and workflows that are easy to monitor and maintain.</p>
+    </div>
   </div>
+  <div class="stats">
+    <!-- 1. SQL (Database programming) -->
+    <div>
+      <b aria-label="SQL">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+        </svg>
+      </b>
+      <small>Database programming</small>
+    </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- 2. ETL (Data integration - banyak sumber masuk ke satu alur) -->
+    <div>
+      <b aria-label="ETL">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="5" cy="6" r="2"></circle>
+          <circle cx="5" cy="18" r="2"></circle>
+          <circle cx="19" cy="12" r="2.5"></circle>
+          <path d="M7 6h4l3 6"></path>
+          <path d="M7 18h4l3-6"></path>
+          <path d="M14 12h2.5"></path>
+        </svg>
+      </b>
+      <small>Data integration</small>
+    </div>
+
+    <!-- 3. ELT (Data transformation - olah & strukturkan data) -->
+    <div>
+      <b aria-label="ELT">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="6" height="6" rx="1.5"></rect>
+          <rect x="15" y="14" width="6" height="6" rx="1.5"></rect>
+          <path d="M9 7h4a2 2 0 0 1 2 2v5"></path>
+          <path d="m12 12 3 3 3-3"></path>
+        </svg>
+      </b>
+      <small>Data transformation</small>
+    </div>
+
+    <!-- 4. DQ (Data quality - perisai centang validasi data) -->
+    <div>
+      <b aria-label="Data Quality">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </b>
+      <small>Data quality</small>
+    </div>
+  </div>
+</section>
+<section class="wrap section" id="experience"><div class="sectionhead"><div><label>02 / EXPERIENCE</label><h2>Where I've <span>worked.</span></h2></div><p>A snapshot of my professional journey and the environments I've contributed to.</p></div>
+<div class="jobs">
+<article class="job">
+  <div class="logo logo-k" aria-label="Data Engineer Icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Database -->
+      <ellipse cx="9" cy="6" rx="6" ry="3"></ellipse>
+      <path d="M3 6v6c0 1.66 2.69 3 6 3s6-1.34 6-3V6"></path>
+      <path d="M3 12v6c0 1.66 2.69 3 6 3s6-1.34 6-3v-6"></path>
+      <!-- Data Pipeline Arrow -->
+      <path d="M17 12h5"></path>
+      <path d="m19 9 3 3-3 3"></path>
+    </svg>
+  </div>
+<div class="jobbody">
+  <small>DATA ENGINEERING <b>2026 — PRESENT</b></small>
+  <h3>Data Engineer / Backend Developer</h3>
+  <p class="company">PT SOLUSI247 Yogyakarta</p>
+  <p>Developing and supporting data pipelines, transformations, and structured data layers for integration and analytics workflows.</p>
+  <div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i> <i>Putty</i></div>
+  <div class="extra">Example scope: Bronze / Silver / Fact layers, ETL processing, data validation, and lineage integration. Edit this to match your exact responsibilities.</div>
+</div>
+
+  <button class="expand">↗</button>
+</article>
+<article class="job">
+  <div class="logo logo-db" aria-label="Database Icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+      <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+    </svg>
+  </div>
+  <div class="jobbody">
+    <small>DATABASE DEVELOPMENT <b>2022 - 2025</b></small>
+    <h3>Oracle PL/SQL Developer</h3>
+    <p class="company">PT SOLUSI247 Yogyakarta</p>
+    <p>Created complex SQL queries, stored procedures, and database logic to process data according to predefined formulas and requirements.</p>
+    <div class="tags">Oracle <i>PL/SQL</i> <i>SQL</i> <i>Data Validation</i></div>
+    <div class="extra">Focus: query development, procedure maintenance, formula implementation, result validation, and data accuracy.</div>
+  </div>
+  <button class="expand">↗</button>
+</article>
+<article class="job"><div class="logo logo-code">&lt;/&gt;</div><div class="jobbody"><small>WEB DEVELOPMENT <b>2022 - 2025</b></small><h3>Frontend / Backend Developer</h3><p class="company">PT SOLUSI247 Yogyakarta</p>
+<p>Built web interfaces and application features using CodeIgniter 3, developed REST APIs, and worked with PostgreSQL queries.</p>
+<div class="tags">PHP <i>CodeIgniter 3</i> <i>PostgreSQL</i> <i>REST API</i></div><div class="extra">Focus: responsive interfaces, API development and integration, backend logic, PostgreSQL queries, and troubleshooting.</div></div><button class="expand">↗</button></article>
+<article class="job">
+  <div class="logo logo-edu" aria-label="Teaching Academic Icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+      <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+    </svg>
+  </div>
+  <div class="jobbody">
+    <small>ACADEMIC <b>2018 - 2022</b></small>
+    <h3>Teaching Assistant</h3>
+    <p class="company">Universitas Amikom Yogyakarta</p>
+    <p>Assisted lecturers in Database Systems, Introduction to Web Programming, and Introduction to Information Technology.</p>
+    <div class="tags">Database Systems <i>Web Programming</i> <i>Teaching</i></div>
+    <div class="extra">Prepared assignments, presented course materials, explained topics, and helped manage student grades.</div>
+  </div>
+  <button class="expand">↗</button>
+</article>
+</div>
+<p class="note">Company and client logos are editable placeholders. Use official logos only when you have permission to publish them. Replace bracketed names and dates with accurate information.</p>
+</section>
+<section class="wrap section" id="projects"><div class="sectionhead"><div><label>03 / SELECTED WORK</label><h2>Projects &amp; <span>contributions.</span></h2></div><p>Selected data engineering work across Telkomsel and Komdigi project environments.</p></div>
+<div class="company-projects">
+<div class="company-project-group telkomsel-group">
+<div class="company-heading"><div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=telkomsel.com&sz=128" alt="Telkomsel favicon"></div><div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Telkomsel</h3></div><span class="project-count">03 PROJECTS</span></div>
+<div class="project-grid">
+<article class="project-item"><div class="project-icon">⇄</div><small>PROJECT 01 · Dedicated Framework Standarization</small><h4>Data Integration Pipeline</h4><p>Building ETL flows for data ingestion, direct movement, script-based transformation, and query-based processing.</p><div class="tags">Apache NiFi <i>Python</i> <i>CI/CD</i><i>Putty</i></div></article>
+<article class="project-item"><div class="project-icon">⌘</div><small>PROJECT 02 · Inves Dashboard</small><h4>Transaction Data Processing</h4><p>Processing and standardizing transaction datasets, applying transformation rules, and validating output records.</p><div class="tags">PG/SQL <i>PostgreDb</i> <i>Data Validation</i></div></article>
+<article class="project-item"><div class="project-icon">▤</div><small>PROJECT 03 · TDirect Dashboard</small><h4>Database Query &amp; Procedures</h4><p>Developing SQL queries and database logic to prepare and deliver data according to defined business rules.</p><div class="tags">Oracle <i>PL/SQL</i> <i>Data Validation</i></div></article>
+</div></div>
+<div class="company-project-group komdigi-group">
+<div class="company-heading"><div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=komdigi.go.id&sz=128" alt="Komdigi favicon"></div><div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Komdigi</h3></div><span class="project-count">01 PROJECT</span></div>
+<div class="project-grid single">
+<article class="project-item"><div class="project-icon">⌁</div><small>PROJECT 01 · Pengadaan Core Data Management<p>Developing data processing workflows with PySpark, organizing datasets into Bronze, Silver, and Fact layers, and integrating metadata lineage with OpenMetadata.</p><div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i></div></article>
+</div></div></div>
+<p class="note">Project descriptions are concise portfolio summaries. Adjust them to match your actual contribution and only publish client names or logos when disclosure is permitted. Use approved brand assets if you want to replace the text-based logo marks.</p></section>
+<section class="wrap section" id="toolbox">
+  <label>04 / TOOLBOX</label>
+  <h2>Tools I <span>work with.</span></h2>
+  <div class="tools">
+    <!-- 1. SQL (Database Query) -->
+    <div>
+      <b class="s1" aria-label="SQL">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+        </svg>
+      </b>
+      <span>SQL<small>Query & database</small></span>
+    </div>
+
+<!-- 2. Python (Dua ular saling mengunci dengan jelas) -->
+	<div>
+		<b class="s2" aria-label="Python">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+		  <!-- Ular Atas -->
+		  <path d="M12 2.5C9.2 2.5 8 3.6 8 5.8V8h4.5v1H6.2C4 9 2.5 10.4 2.5 13c0 2.5 1.3 4 3.5 4h2v-2.2c0-1.8 1.4-3.3 3.3-3.3h4.4c1.3 0 2.3-1 2.3-2.3V5.8c0-2.2-1.5-3.3-6-3.3z"/>
+		  <!-- Ular Bawah -->
+		  <path d="M12 21.5c2.8 0 4-1.1 4-3.3V16h-4.5v-1h6.3c2.2 0 3.7-1.4 3.7-4 0-2.5-1.3-4-3.5-4h-2v2.2c0 1.8-1.4 3.3-3.3 3.3H8.3C7 12.5 6 13.5 6 14.8v3.4c0 2.2 1.5 3.3 6 3.3z"/>
+		  <!-- Mata Ular -->
+		  <circle cx="9.8" cy="5.2" r="0.8" fill="currentColor" stroke="none"/>
+		  <circle cx="14.2" cy="18.8" r="0.8" fill="currentColor" stroke="none"/>
+		</svg>
+	  </b>
+		<span>Python<small>Data processing</small></span>
+	</div>
+
+
+    <!-- 3. PySpark (Bintang Spark khas Apache Spark) -->
+    <div>
+      <b class="s3" aria-label="PySpark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path>
+        </svg>
+      </b>
+      <span>PySpark<small>Distributed processing</small></span>
+    </div>
+
+    <!-- 4. Apache NiFi (Aliran data / Water drop flow) -->
+    <div>
+      <b class="s4" aria-label="Apache NiFi">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          <path d="M8 14h8"></path>
+          <path d="m13 11 3 3-3 3"></path>
+        </svg>
+      </b>
+      <span>Apache NiFi<small>ETL workflows</small></span>
+    </div>
+
+    <!-- 5. Oracle (Cincin kapsul merah khas Oracle) -->
+    <div>
+      <b class="s5" aria-label="Oracle">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="10" rx="5"></rect>
+        </svg>
+      </b>
+      <span>Oracle<small>PL/SQL</small></span>
+    </div>
+
+    <!-- 6. PostgreSQL (Siluet gajah minimalis / Elephant) -->
+<div>
+  <b class="s6" aria-label="PostgreSQL">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Kepala & Telinga Gajah -->
+      <path d="M15.5 4.5C13.8 3.2 11 3.2 9.2 4.5C6.8 3.8 4 5.5 4 9c0 3.2 2.2 5.5 4.5 5.8"/>
+      <path d="M15.5 4.5C18 4.2 20.5 6 20.5 9.2c0 2.8-1.8 4.8-4 5.3"/>
+      <!-- Belalai Melengkung ke Bawah -->
+      <path d="M12.5 11.5v6.2c0 1.8 1.2 2.8 2.5 2.8s2.2-1 2.2-2.2"/>
+      <!-- Gading Gajah -->
+      <path d="M10.5 14.5c-1.5.5-2.5 1.8-2.2 3.2"/>
+      <!-- Mata Gajah -->
+      <circle cx="10.2" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
+      <circle cx="14.8" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
+    </svg>
+  </b>
+  <span>PostgreSQL<small>SQL / PL/pgSQL</small></span>
+</div>
+<!-- 7. Hive / HDFS (Lebah Hive + Sarang Lebah Terdistribusi HDFS) -->
+<div>
+  <b class="s7" aria-label="Hive HDFS">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Sarang Lebah / Distributed Cluster (HDFS) -->
+      <polygon points="12 2.5 19.5 6.8 19.5 15.2 12 19.5 4.5 15.2 4.5 6.8 12 2.5"></polygon>
+      <!-- Siluet Lebah di Tengah (Apache Hive) -->
+      <ellipse cx="12" cy="11.5" rx="2.3" ry="3.8"></ellipse>
+      <!-- Sayap Lebah -->
+      <path d="M9.8 10.2C7.8 8.8 6.5 9.8 7.5 11.4c.5.8 1.5 1 2.3.8"></path>
+      <path d="M14.2 10.2c2-1.4 3.3-.4 2.3 1.2-.5.8-1.5 1-2.3.8"></path>
+      <!-- Garis Badan & Antena Lebah -->
+      <path d="M10 11h4"></path>
+      <path d="M10.3 13h3.4"></path>
+      <path d="M11 8l-1-1.5"></path>
+      <path d="M13 8l1-1.5"></path>
+    </svg>
+  </b>
+  <span>Hive / HDFS<small>Data lake</small></span>
+</div>
+
+
+    <!-- 8. OpenMetadata (Grafik node & lineage data) -->
+    <div>
+      <b class="s8" aria-label="OpenMetadata">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="5" cy="12" r="2.5"></circle>
+          <circle cx="19" cy="6" r="2.5"></circle>
+          <circle cx="19" cy="18" r="2.5"></circle>
+          <path d="M7.5 11l9-4"></path>
+          <path d="M7.5 13l9 4"></path>
+        </svg>
+      </b>
+      <span>OpenMetadata<small>Metadata & lineage</small></span>
+    </div>
+  </div>
+</section>
+<section class="contact"><div class="wrap"><label>05 / GET IN TOUCH</label><h2>Let's make data<br><span>work better.</span></h2><p>Have a project or opportunity in mind? Feel free to reach out.</p><a class="outlink" href="https://github.com/yourusername">GitHub ↗</a><a class="outlink" href="https://linkedin.com/in/yourusername">LinkedIn ↗</a></div></section></main>
+<footer class="wrap"><span>© <b id="year"></b> Muhammad Riki Efendi</span><span>BUILT WITH CARE</span><a href="#home">BACK TO TOP ↑</a></footer><script src="script.js"></script></body></html>
