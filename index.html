@@ -2845,15 +2845,6 @@ body.light .footer-top-btn,
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  #rickyai-trigger-btn {
-    bottom: 20px;
-    left: 16px;
-    padding: 9px 14px;
-    font-size: 12px;
-  }
-}
-
 /* Reset agar #rickyai-trigger-btn duduk sejajar di dalam Dock */
 #links.macos-dock #rickyai-trigger-btn {
   position: relative !important;
@@ -3004,6 +2995,73 @@ body.light .footer-top-btn,
 }
 .ai-bot-row .ai-msg-bot {
   max-width: 100%;
+}
+/* =========================================================
+   KUNCI POSISI DOCK & TOMBOL MENU HP (LETAKKAN PALING BAWAH)
+   ========================================================= */
+@media (max-width: 768px) {
+  /* Pastikan tombol pemicu biru di pojok kanan bawah selalu muncul di HP */
+  #mobile-dock-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 16px !important;
+    left: auto !important;
+    top: auto !important;
+    z-index: 2147483647 !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 16px !important;
+    background: rgba(22, 27, 38, 0.94) !important;
+    border: 1.5px solid #38bdf8 !important;
+    color: #38bdf8 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Sembunyikan Dock secara default di HP */
+  #links.macos-dock {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: fixed !important;
+    bottom: 78px !important;
+    right: 16px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 2147483646 !important;
+    width: auto !important;
+    padding: 10px 8px !important;
+    border-radius: 22px !important;
+    transform-origin: bottom right !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(18px) scale(0.45) !important;
+  }
+
+  /* Munculkan Dock saat tombol biru diklik */
+  #links.macos-dock.dock-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  /* Ukuran seragam seluruh ikon termasuk RickyAI di HP */
+  #links.macos-dock .dock-item,
+  #links.macos-dock #rickyai-trigger-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
 }
 
 </style>
@@ -3374,6 +3432,51 @@ body.light .footer-top-btn,
     }, 350);
   }
 
+</script>
+<script>
+(function () {
+  function initMobileDock() {
+    const dock = document.getElementById('links');
+    if (!dock) return;
+
+    // Pastikan dock menempel langsung di body
+    if (dock.parentElement !== document.body) {
+      document.body.appendChild(dock);
+    }
+
+    // Buat tombol biru pojok kanan bawah jika belum ada
+    let toggleBtn = document.getElementById('mobile-dock-toggle');
+    if (!toggleBtn) {
+      toggleBtn = document.createElement('button');
+      toggleBtn.id = 'mobile-dock-toggle';
+      toggleBtn.type = 'button';
+      toggleBtn.setAttribute('aria-label', 'Buka Menu');
+      toggleBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="5" height="5" rx="1.2"/><rect x="9.5" y="3" width="5" height="5" rx="1.2"/><rect x="16" y="3" width="5" height="5" rx="1.2"/><rect x="3" y="9.5" width="5" height="5" rx="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/><rect x="16" y="9.5" width="5" height="5" rx="1.2"/><rect x="3" y="16" width="5" height="5" rx="1.2"/><rect x="9.5" y="16" width="5" height="5" rx="1.2"/><rect x="16" y="16" width="5" height="5" rx="1.2"/></svg>`;
+      document.body.appendChild(toggleBtn);
+    }
+
+    // Pasang fungsi buka/tutup
+    toggleBtn.onclick = function (e) {
+      e.stopPropagation();
+      const isOpen = dock.classList.toggle('dock-open');
+      toggleBtn.classList.toggle('is-open', isOpen);
+    };
+
+    // Otomatis tutup setelah memilih salah satu ikon di Dock
+    dock.querySelectorAll('.dock-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        dock.classList.remove('dock-open');
+        toggleBtn.classList.remove('is-open');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileDock);
+  } else {
+    initMobileDock();
+  }
+})();
 </script>
 
 <footer class="wrap">
