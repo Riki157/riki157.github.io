@@ -199,99 +199,161 @@
     transform: translateY(0);
   }
 
-  /* Tampilan HP (Mobile): Pindah ke Pinggir Kanan Layar secara Vertikal */
-  @media (max-width: 768px) {
-    #links.macos-dock {
-      bottom: auto !important;
-      top: 50% !important;
-      left: auto !important;
-      right: 12px !important;
-      transform: translateY(-50%) !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 8px;
-      padding: 10px 13px 10px 8px !important;
-      border-radius: 20px;
-      width: auto !important;
-      max-width: none !important;
-    }
+/* Sembunyikan tombol HP saat dibuka di Desktop */
+#mobile-dock-toggle,
+#mobile-launchpad-backdrop {
+  display: none;
+}
 
-    #links.macos-dock .dock-item {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      transform-origin: right center;
-    }
-
-    #links.macos-dock .dock-item svg {
-      border-radius: 11px;
-    }
-
-    #links.macos-dock .dock-item:active {
-      transform: scale(0.92);
-      background: rgba(56, 189, 248, 0.3);
-      color: #7dd3fc;
-    }
-
-    /* Titik Indikator Aktif di Sebelah Kanan Ikon (HP) */
-    #links.macos-dock a.dock-item.active::before {
-      bottom: auto;
-      top: 50%;
-      left: auto;
-      right: -7px;
-      transform: translateY(-50%);
-    }
-
-    /* Tooltip muncul di sebelah kiri ikon saat disentuh di HP */
-    #links.macos-dock .dock-item::after {
-      bottom: auto;
-      top: 50%;
-      left: auto;
-      right: calc(100% + 10px);
-      transform: translateY(-50%) translateX(4px) scale(0.9);
-    }
-
-    #links.macos-dock .dock-item:hover::after {
-      transform: translateY(-50%) translateX(0) scale(1);
-    }
-
-    /* Garis pemisah jadi horizontal di mode vertikal HP */
-    .dock-sep {
-      width: 22px;
-      height: 1px;
-      margin: 2px 0;
-	  
-	/* Titik Indikator Aktif (Elemen Asli .dock-dot) */
-	#links.macos-dock .dock-dot {
-	  position: absolute;
-	  bottom: -9px;
-	  left: 50%;
-	  transform: translateX(-50%) scale(0);
-	  width: 5px;
-	  height: 5px;
-	  border-radius: 50%;
-	  background: #38bdf8;
-	  box-shadow: 0 0 8px #38bdf8;
-	  pointer-events: none;
-	  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-	#links.macos-dock a.dock-item.active .dock-dot {
-	  transform: translateX(-50%) scale(1);
-	}
-	@media (max-width: 768px) {
-	  #links.macos-dock .dock-dot {
-		bottom: auto;
-		top: 50%;
-		left: auto;
-		right: -7px;
-		transform: translateY(-50%) scale(0);
-	  }
-	  #links.macos-dock a.dock-item.active .dock-dot {
-		transform: translateY(-50%) scale(1);
-	  }
-	}
-    }
+@media (max-width: 768px) {
+  #mobile-launchpad-backdrop {
+    display: none !important;
   }
+
+  /* 1 Tombol Melayang di Pojok Kanan Bawah Layar HP */
+  #mobile-dock-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 16px !important;
+    z-index: 2147483647 !important;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgba(22, 27, 38, 0.92);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1.5px solid rgba(56, 189, 248, 0.55);
+    color: #38bdf8;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  #mobile-dock-toggle:active {
+    transform: scale(0.88);
+  }
+
+  #mobile-dock-toggle.is-open {
+    background: #38bdf8;
+    color: #0f172a;
+    transform: rotate(90deg) scale(1.04);
+    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.45);
+  }
+
+  /* Dock dalam keadaan tertutup (tetap di DOM agar animasi buka/tutup mulus dua arah) */
+  #links.macos-dock {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: fixed !important;
+    bottom: 78px !important;
+    right: 16px !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 2147483646 !important;
+    width: auto !important;
+    padding: 10px 8px !important;
+    border-radius: 22px !important;
+    background: rgba(20, 24, 34, 0.88) !important;
+    backdrop-filter: blur(22px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+
+    /* Titik asal membesar dari tombol pojok kanan bawah (efek Genie macOS) */
+    transform-origin: bottom right !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(18px) scale(0.45) !important;
+    transition:
+      opacity 0.26s ease,
+      visibility 0.26s ease,
+      transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  /* Dock saat dibuka */
+  #links.macos-dock.dock-open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  #links.macos-dock .dock-sep {
+    width: 22px !important;
+    height: 1px !important;
+    margin: 2px 0 !important;
+  }
+
+  /* Animasi tiap ikon muncul satu per satu dari bawah ke atas */
+  #links.macos-dock .dock-item {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    opacity: 0;
+    transform: translateY(12px) scale(0.75) !important;
+    transition:
+      opacity 0.28s ease,
+      transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+
+  #links.macos-dock.dock-open .dock-item {
+    opacity: 1;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  /* Jeda berurutan (stagger) dari ikon paling bawah ke paling atas */
+  #links.macos-dock.dock-open .dock-item:nth-last-child(1) { transition-delay: 0.03s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(3) { transition-delay: 0.06s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(4) { transition-delay: 0.09s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(5) { transition-delay: 0.12s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(6) { transition-delay: 0.15s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(7) { transition-delay: 0.18s; }
+  #links.macos-dock.dock-open .dock-item:nth-last-child(9) { transition-delay: 0.21s; }
+
+  #links.macos-dock .dock-item:active {
+    transform: scale(0.88) !important;
+  }
+
+  /* Label Nama Menu ikut meluncur halus dari kanan ke kiri */
+  #links.macos-dock .dock-item::after {
+    content: attr(data-label) !important;
+    position: absolute !important;
+    top: 50% !important;
+    bottom: auto !important;
+    right: calc(100% + 10px) !important;
+    left: auto !important;
+    padding: 4px 10px !important;
+    border-radius: 8px !important;
+    background: rgba(15, 23, 42, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #f8fafc !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transform: translateY(-50%) translateX(8px) !important;
+    transition: opacity 0.25s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  #links.macos-dock.dock-open .dock-item::after {
+    opacity: 1 !important;
+    transform: translateY(-50%) translateX(0) !important;
+    transition-delay: 0.14s;
+  }
+}
+
+
   
   /* =========================================================
    PERBAIKAN TAMPILAN LIGHT MODE (SAAT DARK MODE DIMATIKAN)
@@ -566,6 +628,15 @@ body.light .tool-role-badge,
       <path d="M12 3.5a8.5 8.5 0 0 0 0 17V3.5z" fill="#CBD5E1"/>
     </svg>
   </button>
+  <!-- Tombol Pemicu Menu Khusus HP -->
+<button id="mobile-dock-toggle" type="button" aria-label="Buka Menu">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <rect x="3" y="3" width="5" height="5" rx="1.2"/><rect x="9.5" y="3" width="5" height="5" rx="1.2"/><rect x="16" y="3" width="5" height="5" rx="1.2"/>
+    <rect x="3" y="9.5" width="5" height="5" rx="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/><rect x="16" y="9.5" width="5" height="5" rx="1.2"/>
+    <rect x="3" y="16" width="5" height="5" rx="1.2"/><rect x="9.5" y="16" width="5" height="5" rx="1.2"/><rect x="16" y="16" width="5" height="5" rx="1.2"/>
+  </svg>
+</button>
+<div id="mobile-launchpad-backdrop"></div>
 </div>
 
     </div>
@@ -681,6 +752,38 @@ body.light .tool-role-badge,
 
     revealTargets.forEach(el => observer.observe(el));
   })();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const dock = document.getElementById('links');
+  const toggleBtn = document.getElementById('mobile-dock-toggle');
+  const backdrop = document.getElementById('mobile-launchpad-backdrop');
+
+  if (!dock || !toggleBtn || !backdrop) return;
+
+  // Pastikan ketiganya menempel langsung di body agar tidak terkurung header
+  document.body.appendChild(dock);
+  document.body.appendChild(backdrop);
+  document.body.appendChild(toggleBtn);
+
+  function closeLauncher() {
+    dock.classList.remove('dock-open');
+    backdrop.classList.remove('show');
+    toggleBtn.classList.remove('is-open');
+  }
+
+  toggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const isOpen = dock.classList.toggle('dock-open');
+    backdrop.classList.toggle('show', isOpen);
+    toggleBtn.classList.toggle('is-open', isOpen);
+  });
+
+  backdrop.addEventListener('click', closeLauncher);
+  dock.querySelectorAll('.dock-item').forEach(function (item) {
+    item.addEventListener('click', closeLauncher);
+  });
+});
 </script>
 
 </header>
@@ -1253,7 +1356,7 @@ body.light .tool-role-badge,
 
       <div class="mac-actions">
         <button class="mac-btn" id="mac-copy-email">Copy Email</button>
-        <a class="mac-btn primary" href="mailto:rikifendy23@://gmail.com.">
+        <a class="mac-btn primary" href="mailto:rikifendy23@gmail.com.">
           Request CV ↗
         </a>
       </div>
