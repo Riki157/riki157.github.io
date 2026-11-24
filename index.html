@@ -1,41 +1,1279 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Muhammad Riki Efendi | Data Engineer</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div id="progress"></div>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Muhammad Riki Efendi | Data Engineer</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div id="progress"></div>
 <header>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #menu { display: none !important; }
+
+  /* Kapsul Dock Kaca iOS/macOS Melayang di Tengah Bawah Layar (Desktop) */
+  #links.macos-dock {
+    position: fixed !important;
+    bottom: 22px !important;
+    top: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 10px 14px 15px 14px !important;
+    border-radius: 24px;
+    background: rgba(20, 24, 34, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  /* Kotak App Icon ala macOS / iOS */
+  #links.macos-dock .dock-item {
+    position: relative;
+    overflow: visible !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 14px;
+    color: #f8fafc;
+    text-decoration: none;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transform-origin: bottom center;
+    will-change: transform;
+    transition:
+      transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
+  }
+
+  #links.macos-dock .dock-item svg {
+    border-radius: 13px;
+  }
+
+  #links.macos-dock .dock-item:hover {
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.35), rgba(2, 132, 199, 0.2));
+    border-color: rgba(56, 189, 248, 0.6);
+    color: #7dd3fc;
+  }
+
+  /* Titik Indikator Aktif Persis di Bawah Ikon (Desktop) */
+  #links.macos-dock a.dock-item.active::before {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+  }
+
+  /* Tooltip Nama Menu di Atas Ikon saat Hover (Desktop) */
+  #links.macos-dock .dock-item::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px) scale(0.9);
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  #links.macos-dock .dock-item:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Garis Pemisah Tipis */
+  .dock-sep {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 2px;
+    align-self: center;
+  }
+
+  /* Efek Scroll Reveal Halus */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tampilan HP (Mobile): Pindah ke Pinggir Kanan Layar secara Vertikal */
+  @media (max-width: 768px) {
+    #links.macos-dock {
+      bottom: auto !important;
+      top: 50% !important;
+      left: auto !important;
+      right: 12px !important;
+      transform: translateY(-50%) !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 8px;
+      padding: 10px 13px 10px 8px !important;
+      border-radius: 20px;
+      width: auto !important;
+      max-width: none !important;
+    }
+
+    #links.macos-dock .dock-item {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      transform-origin: right center;
+    }
+
+    #links.macos-dock .dock-item svg {
+      border-radius: 11px;
+    }
+
+    #links.macos-dock .dock-item:active {
+      transform: scale(0.92);
+      background: rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+    }
+
+    /* Titik Indikator Aktif di Sebelah Kanan Ikon (HP) */
+    #links.macos-dock a.dock-item.active::before {
+      bottom: auto;
+      top: 50%;
+      left: auto;
+      right: -7px;
+      transform: translateY(-50%);
+    }
+
+    /* Tooltip muncul di sebelah kiri ikon saat disentuh di HP */
+    #links.macos-dock .dock-item::after {
+      bottom: auto;
+      top: 50%;
+      left: auto;
+      right: calc(100% + 10px);
+      transform: translateY(-50%) translateX(4px) scale(0.9);
+    }
+
+    #links.macos-dock .dock-item:hover::after {
+      transform: translateY(-50%) translateX(0) scale(1);
+    }
+
+    /* Garis pemisah jadi horizontal di mode vertikal HP */
+    .dock-sep {
+      width: 22px;
+      height: 1px;
+      margin: 2px 0;
+	  
+	/* Titik Indikator Aktif (Elemen Asli .dock-dot) */
+	#links.macos-dock .dock-dot {
+	  position: absolute;
+	  bottom: -9px;
+	  left: 50%;
+	  transform: translateX(-50%) scale(0);
+	  width: 5px;
+	  height: 5px;
+	  border-radius: 50%;
+	  background: #38bdf8;
+	  box-shadow: 0 0 8px #38bdf8;
+	  pointer-events: none;
+	  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+	#links.macos-dock a.dock-item.active .dock-dot {
+	  transform: translateX(-50%) scale(1);
+	}
+	@media (max-width: 768px) {
+	  #links.macos-dock .dock-dot {
+		bottom: auto;
+		top: 50%;
+		left: auto;
+		right: -7px;
+		transform: translateY(-50%) scale(0);
+	  }
+	  #links.macos-dock a.dock-item.active .dock-dot {
+		transform: translateY(-50%) scale(1);
+	  }
+	}
+    }
+  }
+</style>
+
+
   <nav class="wrap nav">
     <a class="brand" href="#home" aria-label="Riki Efendi Home">
       <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://w3.org" style="vertical-align: middle; margin-right: 4px;">
-        <!-- Bingkai segi enam / sudut tech -->
         <rect x="2" y="2" width="28" height="28" rx="7" stroke="currentColor" stroke-width="2.2"/>
-        <!-- Monogram R tegas dengan aksen node data -->
         <path d="M10.5 22.5V9.5H17C19.2091 9.5 21 11.2909 21 13.5C21 15.7091 19.2091 17.5 17 17.5H10.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M16.5 17.5L21.5 22.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
         <circle cx="22.5" cy="9.5" r="1.8" fill="currentColor"/>
       </svg>
       Riki<span>Efendi.dev</span>
     </a>
+
     <button id="menu" aria-label="Menu">☰</button>
-    <div id="links">
-      <a href="#about">ABOUT</a>
-      <a href="#experience">EXPERIENCE</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#toolbox">TOOLBOX</a>
-      <a href="#contact">CONTACT</a>
-      <button id="theme" aria-label="Toggle theme">◐</button>
+
+<div id="links" class="macos-dock" role="navigation" aria-label="Main Dock Navigation">
+  <!-- 1. Finder / System Info (Muted Sky Blue & Soft Slate) -->
+  <button class="dock-item" id="mac-spec-btn" data-label="Finder / About Me (⌘K)" aria-label="About This Engineer" style="overflow: hidden; border: 1px solid rgba(125, 211, 252, 0.25); padding: 0;">
+    <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" xmlns="http://w3.org">
+      <defs>
+        <linearGradient id="finderLeft" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.78"/>
+          <stop offset="100%" stop-color="#0369A1" stop-opacity="0.88"/>
+        </linearGradient>
+        <linearGradient id="finderRight" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#E2E8F0" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <rect width="64" height="64" fill="url(#finderRight)"/>
+      <path d="M0 0H34C29.5 14 28.5 24 28.5 31H35C34.2 41 35.5 52 38 64H0V0Z" fill="url(#finderLeft)"/>
+      <path d="M34 0C29.5 14 28.5 24 28.5 31H35C34.2 41 35.5 52 38 64" stroke="#0F172A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="15" y="18" width="4" height="7.5" rx="2" fill="#0F172A"/>
+      <rect x="45" y="18" width="4" height="7.5" rx="2" fill="#0F172A"/>
+      <path d="M15 41.5C21.5 49.5 42.5 49.5 49 41.5" stroke="#0F172A" stroke-width="3.2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <span class="dock-sep" aria-hidden="true"></span>
+
+  <!-- 2. About (Soft Indigo Tinted Glass) -->
+  <a class="dock-item" href="#about" data-label="About" aria-label="About" style="overflow: hidden; border: 1px solid rgba(165, 180, 252, 0.25); padding: 0; background: linear-gradient(145deg, rgba(99, 102, 241, 0.28), rgba(67, 56, 202, 0.16));">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A5B4FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8.5" r="4" fill="rgba(165, 180, 252, 0.2)"/>
+      <path d="M5 20a7 7 0 0 1 14 0" fill="rgba(165, 180, 252, 0.15)"/>
+    </svg>
+  </a>
+
+  <!-- 3. Experience (Muted Amber / Warm Terracotta Glass) -->
+  <a class="dock-item" href="#experience" data-label="Experience" aria-label="Experience" style="overflow: hidden; border: 1px solid rgba(253, 186, 116, 0.25); padding: 0; background: linear-gradient(145deg, rgba(249, 115, 22, 0.26), rgba(194, 65, 12, 0.15));">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="7" width="18" height="13" rx="2.5" fill="rgba(253, 186, 116, 0.16)"/>
+      <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+      <path d="M3 12h18"/>
+    </svg>
+  </a>
+
+  <!-- 4. Projects (Soft Cyan / Teal Glass - Senada dengan Aksen Teks Halaman) -->
+  <a class="dock-item" href="#projects" data-label="Projects" aria-label="Projects" style="overflow: hidden; border: 1px solid rgba(103, 232, 249, 0.28); padding: 0; background: linear-gradient(145deg, rgba(6, 182, 212, 0.28), rgba(14, 116, 144, 0.16));">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="rgba(103, 232, 249, 0.2)"/>
+    </svg>
+  </a>
+
+  <!-- 5. Toolbox (Dark Slate Terminal dengan Aksen Emerald Lembut) -->
+  <a class="dock-item" href="#toolbox" data-label="Toolbox" aria-label="Toolbox" style="overflow: hidden; border: 1px solid rgba(110, 231, 183, 0.22); padding: 0; background: linear-gradient(145deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.85));">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="5 8 10 12 5 16" stroke="#6EE7B7"/>
+      <line x1="12" y1="16" x2="19" y2="16" stroke="#CBD5E1"/>
+    </svg>
+  </a>
+
+  <!-- 6. Contact (Muted Sky Blue Glass) -->
+  <a class="dock-item" href="#contact" data-label="Contact" aria-label="Contact" style="overflow: hidden; border: 1px solid rgba(147, 197, 253, 0.25); padding: 0; background: linear-gradient(145deg, rgba(59, 130, 246, 0.26), rgba(29, 78, 216, 0.15));">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="2.5" fill="rgba(147, 197, 253, 0.16)"/>
+      <path d="m3 7 9 6 9-6"/>
+    </svg>
+  </a>
+
+  <span class="dock-sep" aria-hidden="true"></span>
+
+  <!-- 7. Theme Toggle (Muted Silver Slate Glass) -->
+  <button class="dock-item" id="theme" data-label="Theme" aria-label="Toggle theme" style="overflow: hidden; border: 1px solid rgba(203, 213, 225, 0.22); padding: 0; background: linear-gradient(145deg, rgba(148, 163, 184, 0.24), rgba(71, 85, 105, 0.15));">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.5" fill="rgba(203, 213, 225, 0.14)"/>
+      <path d="M12 3.5a8.5 8.5 0 0 0 0 17V3.5z" fill="#CBD5E1"/>
+    </svg>
+  </button>
+</div>
+
     </div>
   </nav>
+
+  <script>
+  (function () {
+    const dock = document.getElementById('links');
+    const modal = document.getElementById('mac-modal-overlay');
+    if (dock) document.body.appendChild(dock);
+    if (modal) document.body.appendChild(modal);
+
+    if (dock) {
+      const items = Array.from(dock.querySelectorAll('.dock-item'));
+      const maxScale = 1.42;
+      const maxLift = -12;
+      const range = 135;
+
+      dock.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+
+        items.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          const itemCenterX = rect.left + rect.width / 2;
+          const distance = Math.abs(e.clientX - itemCenterX);
+
+          if (distance < range) {
+            const ratio = Math.cos((distance / range) * (Math.PI / 2));
+            const scale = 1 + (maxScale - 1) * ratio;
+            const lift = maxLift * ratio;
+            item.style.transform = `translateY(${lift}px) scale(${scale})`;
+          } else {
+            item.style.transform = 'translateY(0px) scale(1)';
+          }
+        });
+      });
+
+      dock.addEventListener('mouseleave', () => {
+        items.forEach((item) => {
+          item.style.transform = 'translateY(0px) scale(1)';
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+          items.forEach((item) => {
+            item.style.transform = '';
+          });
+        }
+      });
+    }
+
+    // Pop-up Finder Request CV
+    const openBtn = document.getElementById('mac-spec-btn');
+    const closeBtn = document.getElementById('mac-close-btn');
+    const copyBtn = document.getElementById('mac-copy-email');
+
+    if (openBtn && modal) openBtn.onclick = () => modal.classList.add('open');
+    if (closeBtn && modal) closeBtn.onclick = () => modal.classList.remove('open');
+    if (modal) {
+      modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('open'); };
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal) return;
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        modal.classList.toggle('open');
+      } else if (e.key === 'Escape') {
+        modal.classList.remove('open');
+      }
+    });
+
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText('rikifendy23@gmail.com');
+        copyBtn.textContent = 'Copied! ✓';
+        setTimeout(() => { copyBtn.textContent = 'Copy Email'; }, 1800);
+      };
+    }
+
+    // Indikator Menu Aktif di Dock saat Scroll
+    const sections = ['about', 'experience', 'projects', 'toolbox', 'contact']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    const dockLinks = document.querySelectorAll('#links a.dock-item');
+
+    function updateActiveDock() {
+      let currentId = '';
+      const scrollPos = window.scrollY + window.innerHeight * 0.45;
+      sections.forEach(sec => {
+        if (scrollPos >= sec.offsetTop) currentId = sec.id;
+      });
+      dockLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    }
+    window.addEventListener('scroll', updateActiveDock, { passive: true });
+    updateActiveDock();
+
+    // Animasi Scroll Reveal Halus
+    const revealTargets = document.querySelectorAll('.stats > div, .job, .tools > div, .contact .wrap');
+    revealTargets.forEach(el => el.classList.add('reveal-up'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealTargets.forEach(el => observer.observe(el));
+  })();
+</script>
+
 </header>
-<main><section class="hero wrap" id="home"><div><div class="kicker"><i></i> DATA ENGINEER · PORTFOLIO 2026</div><h1>Turning raw data<br><em>into something useful.</em></h1><p class="lead">I'm <strong>Muhammad Riki Efendi</strong> — a Data Engineer focused on ETL development, data transformation, database programming, and building reliable data workflows.</p><div class="actions"><a class="btn primary" href="#projects">Explore projects ↘</a></div><p class="contactline">Yogyakarta, Indonesia <span>•</span> <a href="mailto:rikifendy23@gmail.com">rikifendy23@gmail.com ↗</a></p></div><div class="visual"><div class="orbit o1"></div><div class="orbit o2"></div><div class="profile"><small>PROFILE <i></i></small><div class="avatar">RE</div><h3>Muhammad Riki Efendi</h3><p>DATA ENGINEER</p><small class="bottom">SQL / PYTHON / ETL <span>↗</span></small></div></div></section>
-<div class="ticker"><div>SQL　✳　PYTHON　✳　PYSPARK　✳　APACHE NIFI　✳　ORACLE　✳　POSTGRESQL　✳　HIVE　✳　OPENMETADATA　✳　SQL　✳　PYTHON　✳　PYSPARK　✳　APACHE NIFI　✳　ORACLE　✳　POSTGRESQL　✳　HIVE　✳　OPENMETADATA　✳</div></div>
-<section class="wrap section" id="about">
-  <label>01 / ABOUT ME</label>
-  <div class="two">
-    <h2>Curious about data.<br><span>Serious about quality.</span></h2>
-    <div>
-      <p>I enjoy building structured and maintainable data solutions — from writing complex database queries to developing ETL pipelines and organizing datasets for analytics.</p>
-      <p class="dim">My work spans database development, data integration, transformation, and data modeling. I value accuracy, clear logic, and workflows that are easy to monitor and maintain.</p>
+<main>
+<section class="hero wrap" id="home">
+<style>
+  /* Penataan Kolom Teks Hero (Hanya di Kolom Kiri, Aman dari .visual) */
+  #home .hero-left {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Kicker Pill Modern */
+  #home .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  /* Judul Utama dengan Sorotan Gradasi Halus */
+  #home .hero-left h1 {
+    margin: 18px 0 16px;
+    line-height: 1.12;
+  }
+  #home .hero-left h1 em {
+    font-style: normal;
+    background: linear-gradient(120deg, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Baris Tombol Aksi Ganda (Primary + Secondary) */
+  #home .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 22px;
+  }
+  #home .btn.primary {
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.28);
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+  }
+  #home .btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(56, 189, 248, 0.42);
+  }
+  #home .btn.ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  #home .btn.ghost:hover {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.45);
+    transform: translateY(-2px);
+  }
+
+  /* Baris Info Lokasi & Status Cepat */
+  #home .hero-meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+  }
+  #home .hero-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #94a3b8;
+  }
+  #home .hero-meta-item a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  #home .hero-meta-item a:hover {
+    color: #38bdf8;
+  }
+  .hero-avail-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+  }
+</style>
+
+  <div class="hero-left">
+    <div class="kicker"><i></i> DATA ENGINEER · PORTFOLIO 2026</div>
+    <h1>Turning raw data<br><em>into something useful.</em></h1>
+    <p class="lead">I'm <strong>Muhammad Riki Efendi</strong> — a Data Engineer with <strong>3+ years of experience</strong> focused on ETL pipelines, lakehouse modeling, database programming, and reliable data workflows.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">Explore projects ↘</a>
+      <a class="btn ghost" href="#experience">Career timeline</a>
+    </div>
+    <div class="hero-meta-strip">
+      <span class="hero-meta-item"><i class="hero-avail-dot"></i> Available for opportunities</span>
+      <span class="hero-meta-item">📍 Yogyakarta, Indonesia</span>
+      <span class="hero-meta-item">✉️ <a href="mailto:rikifendy23@gmail.com">rikifendy23@gmail.com ↗</a></span>
     </div>
   </div>
+
+
+  <div class="visual">
+  <style>
+    .profile .avatar-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile .avatar {
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .profile:hover .avatar {
+      transform: scale(1.07);
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.35);
+    }
+    .memoji-bubble {
+      position: absolute;
+      top: -6px;
+      right: -28px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 12px 12px 12px 2px;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.5) translate(-6px, 8px);
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 5;
+    }
+    .profile:hover .memoji-bubble {
+      opacity: 1;
+      transform: scale(1) translate(0, 0);
+    }
+    .memoji-head {
+      transform-origin: 60px 60px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile:hover .memoji-head {
+      transform: rotate(-4deg) translateY(-2px);
+    }
+    .memoji-hand {
+      opacity: 0;
+      transform-origin: 96px 115px;
+      transform: translateY(18px) rotate(15deg);
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile:hover .memoji-hand {
+      opacity: 1;
+      animation: memojiWave 0.65s ease-in-out infinite alternate;
+    }
+    .memoji-smile-idle {
+      transition: opacity 0.2s ease;
+    }
+    .memoji-smile-hover {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .profile:hover .memoji-smile-idle {
+      opacity: 0;
+    }
+    .profile:hover .memoji-smile-hover {
+      opacity: 1;
+    }
+    .memoji-glare {
+      transform: translateX(-25px);
+      opacity: 0;
+      transition: transform 0.55s ease, opacity 0.3s ease;
+    }
+    .profile:hover .memoji-glare {
+      transform: translateX(25px);
+      opacity: 0.55;
+    }
+    @keyframes memojiWave {
+      0% { transform: translateY(0px) rotate(-8deg); }
+      100% { transform: translateY(-3px) rotate(16deg); }
+    }
+  </style>
+
+  <div class="visual">
+  <style>
+    .profile {
+      position: relative;
+    }
+    .profile .avatar-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    .profile .avatar {
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    }
+    .profile:hover .avatar {
+      transform: scale(1.07);
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.35);
+    }
+    .memoji-bubble {
+      position: absolute;
+      top: 4px;
+      right: -24px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 12px 12px 12px 2px;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.5) translate(-6px, 8px);
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 5;
+    }
+    .profile:hover .memoji-bubble {
+      opacity: 1;
+      transform: scale(1) translate(0, 0);
+    }
+    .memoji-head {
+      transform-origin: 60px 60px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile:hover .memoji-head {
+      transform: rotate(-4deg) translateY(-2px);
+    }
+    .memoji-hand {
+      opacity: 0;
+      transform-origin: 96px 115px;
+      transform: translateY(18px) rotate(15deg);
+      transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile:hover .memoji-hand {
+      opacity: 1;
+      animation: memojiWave 0.65s ease-in-out infinite alternate;
+    }
+    .memoji-smile-idle { transition: opacity 0.2s ease; }
+    .memoji-smile-hover { opacity: 0; transition: opacity 0.2s ease; }
+    .profile:hover .memoji-smile-idle { opacity: 0; }
+    .profile:hover .memoji-smile-hover { opacity: 1; }
+    .memoji-glare {
+      transform: translateX(-25px);
+      opacity: 0;
+      transition: transform 0.55s ease, opacity 0.3s ease;
+    }
+    .profile:hover .memoji-glare {
+      transform: translateX(25px);
+      opacity: 0.55;
+    }
+    @keyframes memojiWave {
+      0% { transform: translateY(0px) rotate(-8deg); }
+      100% { transform: translateY(-3px) rotate(16deg); }
+    }
+  </style>
+
+  <div class="orbit o1"></div>
+  <div class="orbit o2"></div>
+  <div class="profile">
+    <small>PROFILE <i></i></small>
+
+    <div class="avatar-wrap">
+      <span class="memoji-bubble">Hi!</span>
+
+      <div class="avatar" aria-label="Muhammad Riki Efendi Memoji Avatar" style="overflow: hidden; display: flex; align-items: flex-end; justify-content: center; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+        <svg viewBox="0 0 120 120" width="100%" height="100%" xmlns="http://w3.org">
+          <defs>
+            <radialGradient id="skinGrad" cx="45%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#F7C9A9"/>
+              <stop offset="70%" stop-color="#E5A882"/>
+              <stop offset="100%" stop-color="#C98863"/>
+            </radialGradient>
+            <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2D3142"/>
+              <stop offset="100%" stop-color="#11131A"/>
+            </linearGradient>
+            <linearGradient id="hoodieGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8"/>
+              <stop offset="100%" stop-color="#0284C7"/>
+            </linearGradient>
+          </defs>
+
+          <path d="M22 122 C24 98, 42 90, 60 90 C78 90, 96 98, 98 122 Z" fill="url(#hoodieGrad)"/>
+          <path d="M44 91 Q60 104 76 91" fill="none" stroke="#0369A1" stroke-width="3" stroke-linecap="round"/>
+          <line x1="51" y1="98" x2="51" y2="114" stroke="#E0F2FE" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="69" y1="98" x2="69" y2="114" stroke="#E0F2FE" stroke-width="2.2" stroke-linecap="round"/>
+          <rect x="52" y="76" width="16" height="18" rx="7" fill="#D5956F"/>
+
+          <g class="memoji-head">
+            <g>
+              <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.5; 0 0" dur="3.2s" repeatCount="indefinite"/>
+              <circle cx="34" cy="57" r="6.5" fill="#E0A17B"/>
+              <circle cx="86" cy="57" r="6.5" fill="#E0A17B"/>
+              <rect x="36" y="28" width="48" height="54" rx="24" fill="url(#skinGrad)"/>
+              <ellipse cx="44" cy="61" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.25"/>
+              <ellipse cx="76" cy="61" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.25"/>
+              <path d="M43 45 Q49 42.5 54 44.5" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M66 44.5 Q71 42.5 77 45" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+              <g>
+                <ellipse cx="49" cy="52" rx="3.2" ry="3.8" fill="#1E202B">
+                  <animate attributeName="ry" values="3.8;3.8;0.3;3.8;3.8" keyTimes="0;0.92;0.95;0.98;1" dur="4s" repeatCount="indefinite"/>
+                </ellipse>
+                <circle cx="50" cy="50.8" r="1.1" fill="#FFFFFF"/>
+                <ellipse cx="71" cy="52" rx="3.2" ry="3.8" fill="#1E202B">
+                  <animate attributeName="ry" values="3.8;3.8;0.3;3.8;3.8" keyTimes="0;0.92;0.95;0.98;1" dur="4s" repeatCount="indefinite"/>
+                </ellipse>
+                <circle cx="72" cy="50.8" r="1.1" fill="#FFFFFF"/>
+              </g>
+              <rect x="40" y="46.5" width="17" height="11" rx="3.5" fill="#FFFFFF" fill-opacity="0.12" stroke="#1E293B" stroke-width="2.2"/>
+              <rect x="63" y="46.5" width="17" height="11" rx="3.5" fill="#FFFFFF" fill-opacity="0.12" stroke="#1E293B" stroke-width="2.2"/>
+              <line x1="57" y1="51.5" x2="63" y2="51.5" stroke="#1E293B" stroke-width="2.2"/>
+              <line class="memoji-glare" x1="44" y1="48" x2="49" y2="56" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+              <line class="memoji-glare" x1="67" y1="48" x2="72" y2="56" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+              <path d="M60 54 L58.5 60.5 Q60 62 61.5 60.5" fill="none" stroke="#C5825C" stroke-width="2" stroke-linecap="round"/>
+              <path class="memoji-smile-idle" d="M53 67 Q60 73 67 67" fill="none" stroke="#7C2D12" stroke-width="2.4" stroke-linecap="round"/>
+              <path class="memoji-smile-hover" d="M51 66 Q60 76 69 66 Z" fill="#FFFFFF" stroke="#7C2D12" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M34 48 C32 28, 45 17, 62 18 C77 18, 88 28, 86 48 C85 38, 79 33, 71 33 C63 33, 55 37, 45 35 C39 34, 36 40, 34 48 Z" fill="url(#hairGrad)"/>
+              <path d="M47 21 C54 14, 68 15, 75 22 C67 21, 56 22, 47 21 Z" fill="#3B4259" opacity="0.5"/>
+            </g>
+          </g>
+
+          <g class="memoji-hand">
+            <rect x="91" y="92" width="10" height="24" rx="5" fill="#0284C7"/>
+            <circle cx="96" cy="87" r="6.5" fill="url(#skinGrad)"/>
+            <rect x="91" y="79" width="2.4" height="8" rx="1.2" fill="#E5A882"/>
+            <rect x="94.8" y="77.5" width="2.4" height="9" rx="1.2" fill="#E5A882"/>
+            <rect x="98.6" y="79" width="2.4" height="8" rx="1.2" fill="#E5A882"/>
+            <rect x="88" y="85" width="5" height="2.4" rx="1.2" transform="rotate(-25 88 85)" fill="#E5A882"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <h3>Muhammad Riki Efendi</h3>
+    <p>DATA ENGINEER</p>
+    <small class="bottom">SQL / PYTHON / ETL <span>↗</span></small>
+  </div>
+</div>
+</section>
+<div class="ticker">
+  <div>
+    DATA PIPELINES　✳　ETL / ELT WORKFLOWS　✳　MEDALLION ARCHITECTURE　✳　DATA WAREHOUSING　✳　DATA LINEAGE &amp; GOVERNANCE　✳　DATA QUALITY VALIDATION　✳　
+    DATA PIPELINES　✳　ETL / ELT WORKFLOWS　✳　MEDALLION ARCHITECTURE　✳　DATA WAREHOUSING　✳　DATA LINEAGE &amp; GOVERNANCE　✳　DATA QUALITY VALIDATION　✳
+  </div>
+</div>
+
+</div>
+<!-- Pop-up Finder Request CV -->
+<style>
+  #mac-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(2, 6, 23, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  #mac-modal-overlay.open {
+    display: flex;
+  }
+  .mac-window {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 20px;
+    background: rgba(22, 27, 38, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    color: #f8fafc;
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+  }
+  .mac-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mac-dots { display: flex; gap: 7px; }
+  .mac-dots button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .mac-dot-close { background: #ff5f56; }
+  .mac-dot-min { background: #ffbd2e; }
+  .mac-dot-max { background: #27c93f; }
+  .mac-title { font-size: 11px; font-weight: 700; color: #94a3b8; }
+  .mac-body { padding: 20px; text-align: center; }
+  .mac-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #38bdf8, #0284c7);
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .mac-body h4 { margin: 0 0 2px; font-size: 16px; color: #fff; }
+  .mac-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #38bdf8;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .mac-specs {
+    text-align: left;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 12px;
+    display: grid;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .mac-specs div { display: flex; justify-content: space-between; gap: 8px; }
+  .mac-specs span:first-child { color: #94a3b8; }
+  .mac-specs span:last-child { color: #e2e8f0; font-weight: 600; text-align: right; }
+  .mac-actions { display: flex; gap: 8px; }
+  .mac-btn {
+    flex: 1;
+    padding: 9px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+  }
+  .mac-btn.primary { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+</style>
+
+<div id="mac-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="mac-win-title">
+  <div class="mac-window">
+    <div class="mac-titlebar">
+      <div class="mac-dots">
+        <button class="mac-dot-close" id="mac-close-btn" aria-label="Close"></button>
+        <button class="mac-dot-min" aria-label="Minimize"></button>
+        <button class="mac-dot-max" aria-label="Maximize"></button>
+      </div>
+      <span class="mac-title" id="mac-win-title">Finder · Riki Efendi</span>
+      <span style="width: 38px;"></span>
+    </div>
+
+        <div class="mac-body">
+      <div class="mac-badge" style="width: 72px; height: 72px; border-radius: 50%; overflow: hidden; padding: 0; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(56, 189, 248, 0.4);">
+        <svg viewBox="0 0 120 120" width="100%" height="100%" xmlns="http://w3.org">
+          <defs>
+            <radialGradient id="modalSkin" cx="45%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#F7C9A9"/>
+              <stop offset="70%" stop-color="#E5A882"/>
+              <stop offset="100%" stop-color="#C98863"/>
+            </radialGradient>
+            <linearGradient id="modalHair" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2D3142"/>
+              <stop offset="100%" stop-color="#11131A"/>
+            </linearGradient>
+            <linearGradient id="modalHoodie" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38BDF8"/>
+              <stop offset="100%" stop-color="#0284C7"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Hoodie & Leher -->
+          <path d="M22 122 C24 98, 42 90, 60 90 C78 90, 96 98, 98 122 Z" fill="url(#modalHoodie)"/>
+          <path d="M44 91 Q60 104 76 91" fill="none" stroke="#0369A1" stroke-width="3" stroke-linecap="round"/>
+          <rect x="52" y="76" width="16" height="18" rx="7" fill="#D5956F"/>
+
+          <!-- Grup Kepala dengan Animasi Melayang Halus -->
+          <g>
+            <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.5; 0 0" dur="3s" repeatCount="indefinite"/>
+            <circle cx="34" cy="57" r="6.5" fill="#E0A17B"/>
+            <circle cx="86" cy="57" r="6.5" fill="#E0A17B"/>
+            <rect x="36" y="28" width="48" height="54" rx="24" fill="url(#modalSkin)"/>
+            <ellipse cx="44" cy="61" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.25"/>
+            <ellipse cx="76" cy="61" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.25"/>
+
+            <!-- Alis -->
+            <path d="M43 45 Q49 42.5 54 44.5" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M66 44.5 Q71 42.5 77 45" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+
+            <!-- Mata Berkedip -->
+            <g>
+              <ellipse cx="49" cy="52" rx="3.2" ry="3.8" fill="#1E202B">
+                <animate attributeName="ry" values="3.8;3.8;0.3;3.8;3.8" keyTimes="0;0.92;0.95;0.98;1" dur="4s" repeatCount="indefinite"/>
+              </ellipse>
+              <circle cx="50" cy="50.8" r="1.1" fill="#FFFFFF"/>
+              <ellipse cx="71" cy="52" rx="3.2" ry="3.8" fill="#1E202B">
+                <animate attributeName="ry" values="3.8;3.8;0.3;3.8;3.8" keyTimes="0;0.92;0.95;0.98;1" dur="4s" repeatCount="indefinite"/>
+              </ellipse>
+              <circle cx="72" cy="50.8" r="1.1" fill="#FFFFFF"/>
+            </g>
+
+            <!-- Kacamata -->
+            <rect x="40" y="46.5" width="17" height="11" rx="3.5" fill="#FFFFFF" fill-opacity="0.12" stroke="#1E293B" stroke-width="2.2"/>
+            <rect x="63" y="46.5" width="17" height="11" rx="3.5" fill="#FFFFFF" fill-opacity="0.12" stroke="#1E293B" stroke-width="2.2"/>
+            <line x1="57" y1="51.5" x2="63" y2="51.5" stroke="#1E293B" stroke-width="2.2"/>
+
+            <!-- Hidung & Senyum -->
+            <path d="M60 54 L58.5 60.5 Q60 62 61.5 60.5" fill="none" stroke="#C5825C" stroke-width="2" stroke-linecap="round"/>
+            <path d="M53 67 Q60 73 67 67" fill="none" stroke="#7C2D12" stroke-width="2.4" stroke-linecap="round"/>
+
+            <!-- Rambut -->
+            <path d="M34 48 C32 28, 45 17, 62 18 C77 18, 88 28, 86 48 C85 38, 79 33, 71 33 C63 33, 55 37, 45 35 C39 34, 36 40, 34 48 Z" fill="url(#modalHair)"/>
+          </g>
+        </svg>
+      </div>
+
+      <h4>Muhammad Riki Efendi S.Kom</h4>
+      <span class="mac-sub">Data Engineer · Yogyakarta, ID</span>
+
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(34, 197, 94, 0.14); border: 1px solid rgba(34, 197, 94, 0.35); color: #4ade80; font-size: 11px; font-weight: 700; margin-bottom: 12px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e;"></span>
+        Open for Opportunities
+      </div>
+
+      <div class="mac-specs">
+        <div><span>Experience</span><span>3+ Years (Telco &amp; Gov)</span></div>
+        <div><span>Core Stack</span><span>PySpark, Python, SQL, NiFi</span></div>
+        <div><span>Database</span><span>Oracle PL/SQL, PostgreSQL</span></div>
+      </div>
+
+      <p style="font-size: 11.5px; color: #94a3b8; margin: 0 0 14px; line-height: 1.45;">
+        To protect personal contact privacy, please request my full CV via email.
+      </p>
+
+      <div class="mac-actions">
+        <button class="mac-btn" id="mac-copy-email">Copy Email</button>
+        <a class="mac-btn primary" href="mailto:rikifendy23@://gmail.com.">
+          Request CV ↗
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  const dock = document.getElementById('links');
+  const modal = document.getElementById('mac-modal-overlay');
+  if (dock) document.body.appendChild(dock);
+  if (modal) document.body.appendChild(modal);
+
+  if (dock) {
+    const items = Array.from(dock.querySelectorAll('.dock-item'));
+    dock.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 768) return;
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const dist = Math.abs(e.clientX - (rect.left + rect.width / 2));
+        if (dist < 135) {
+          const ratio = Math.cos((dist / 135) * (Math.PI / 2));
+          item.style.transform = `translateY(${-12 * ratio}px) scale(${1 + 0.42 * ratio})`;
+        } else {
+          item.style.transform = 'translateY(0px) scale(1)';
+        }
+      });
+    });
+    dock.addEventListener('mouseleave', () => {
+      items.forEach((item) => { item.style.transform = 'translateY(0px) scale(1)'; });
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 768) {
+        items.forEach((item) => { item.style.transform = ''; });
+      }
+    });
+  }
+
+  const openBtn = document.getElementById('mac-spec-btn');
+  const closeBtn = document.getElementById('mac-close-btn');
+  const copyBtn = document.getElementById('mac-copy-email');
+
+  if (openBtn && modal) openBtn.onclick = () => modal.classList.add('open');
+  if (closeBtn && modal) closeBtn.onclick = () => modal.classList.remove('open');
+  if (modal) {
+    modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('open'); };
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!modal) return;
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      modal.classList.toggle('open');
+    } else if (e.key === 'Escape') {
+      modal.classList.remove('open');
+    }
+  });
+
+  if (copyBtn) {
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText('rikifendy23@gmail.com');
+      copyBtn.textContent = 'Copied! ✓';
+      setTimeout(() => { copyBtn.textContent = 'Copy Email'; }, 1800);
+    };
+  }
+})();
+</script>
+<style>
+  /* Tata Letak About Me Lebih Mencolok & Personal */
+  #about .about-hero-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+    margin: 18px 0 26px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.09), rgba(15, 23, 42, 0.55));
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  #about .about-hero-card:hover {
+    border-color: rgba(56, 189, 248, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Kotak Karakter Animasi Laki-laki */
+  .about-memoji-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 24px;
+    background: radial-gradient(circle at 50% 30%, #1e293b 0%, #090d16 100%);
+    border: 1.5px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 12px 26px rgba(2, 132, 199, 0.25);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .about-story h2 {
+    margin: 0 0 12px;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.25;
+  }
+  .about-story p {
+    margin: 0 0 12px;
+    line-height: 1.65;
+  }
+
+  /* Pill Highlight Keahlian Utama */
+  .about-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #7dd3fc;
+  }
+
+  /* Peningkatan Kartu Statistik Pilar Kerja */
+  #about .stats > div {
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  #about .stats > div:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+  #about .stats .stat-title {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 8px 0 2px;
+  }
+
+  @media (max-width: 680px) {
+    #about .about-hero-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: 20px 16px;
+    }
+    .about-highlights {
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="wrap section" id="about">
+  <label>01 / ABOUT ME</label>
+
+  <!-- Kartu Utama About Me dengan Karakter Animasi Laki-laki -->
+  <div class="about-hero-card">
+    <div class="about-memoji-box" aria-label="Animated Data Engineer Character">
+      <svg viewBox="0 0 140 140" width="100%" height="100%" xmlns="http://w3.org">
+        <defs>
+          <radialGradient id="aboutSkin" cx="45%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#F7C9A9"/>
+            <stop offset="70%" stop-color="#E5A882"/>
+            <stop offset="100%" stop-color="#C98863"/>
+          </radialGradient>
+          <linearGradient id="aboutHair" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2D3142"/>
+            <stop offset="100%" stop-color="#11131A"/>
+          </linearGradient>
+          <linearGradient id="aboutHoodie" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="100%" stop-color="#0284C7"/>
+          </linearGradient>
+          <linearGradient id="laptopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#475569"/>
+            <stop offset="100%" stop-color="#1E293B"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Cahaya Layar Laptop ke Wajah -->
+        <ellipse cx="70" cy="95" rx="46" ry="22" fill="#38BDF8" opacity="0.16">
+          <animate attributeName="opacity" values="0.12;0.24;0.12" dur="2.5s" repeatCount="indefinite"/>
+        </ellipse>
+
+        <!-- Badan Hoodie -->
+        <path d="M28 136 C30 106, 48 96, 70 96 C92 96, 110 106, 112 136 Z" fill="url(#aboutHoodie)"/>
+        <rect x="61" y="80" width="18" height="20" rx="8" fill="#D5956F"/>
+
+        <!-- Grup Kepala Mengangguk Fokus -->
+        <g>
+          <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.5; 0 0" dur="2.8s" repeatCount="indefinite"/>
+          <circle cx="43" cy="60" r="7" fill="#E0A17B"/>
+          <circle cx="97" cy="60" r="7" fill="#E0A17B"/>
+          <rect x="45" y="28" width="50" height="58" rx="25" fill="url(#aboutSkin)"/>
+
+          <!-- Rona Pipi -->
+          <ellipse cx="53" cy="64" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.22"/>
+          <ellipse cx="87" cy="64" rx="4.5" ry="2.5" fill="#F43F5E" opacity="0.22"/>
+
+          <!-- Alis -->
+          <path d="M52 47 Q58 44.5 64 46.5" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M76 46.5 Q82 44.5 88 47" fill="none" stroke="#1E202B" stroke-width="2.6" stroke-linecap="round"/>
+
+          <!-- Mata Berkedip + Pantulan Kode Biru -->
+          <g>
+            <ellipse cx="58" cy="54" rx="3.3" ry="4" fill="#1E202B">
+              <animate attributeName="ry" values="4;4;0.3;4;4" keyTimes="0;0.9;0.94;0.98;1" dur="3.6s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle cx="59.2" cy="52.6" r="1.2" fill="#38BDF8"/>
+
+            <ellipse cx="82" cy="54" rx="3.3" ry="4" fill="#1E202B">
+              <animate attributeName="ry" values="4;4;0.3;4;4" keyTimes="0;0.9;0.94;0.98;1" dur="3.6s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle cx="83.2" cy="52.6" r="1.2" fill="#38BDF8"/>
+          </g>
+
+          <!-- Kacamata -->
+          <rect x="49" y="48.5" width="18" height="11.5" rx="3.5" fill="#38BDF8" fill-opacity="0.1" stroke="#1E293B" stroke-width="2.2"/>
+          <rect x="73" y="48.5" width="18" height="11.5" rx="3.5" fill="#38BDF8" fill-opacity="0.1" stroke="#1E293B" stroke-width="2.2"/>
+          <line x1="67" y1="53.5" x2="73" y2="53.5" stroke="#1E293B" stroke-width="2.2"/>
+
+          <!-- Hidung & Senyum -->
+          <path d="M70 56 L68.5 63 Q70 64.5 71.5 63" fill="none" stroke="#C5825C" stroke-width="2" stroke-linecap="round"/>
+          <path d="M63 70 Q70 75 77 70" fill="none" stroke="#7C2D12" stroke-width="2.3" stroke-linecap="round"/>
+
+          <!-- Rambut -->
+          <path d="M43 50 C41 28, 54 16, 72 17 C88 17, 99 28, 97 50 C96 39, 90 34, 81 34 C73 34, 64 38, 54 36 C48 35, 45 41, 43 50 Z" fill="url(#aboutHair)"/>
+        </g>
+
+        <!-- Laptop Terbuka di Depan (Gaya MacBook) -->
+        <rect x="34" y="102" width="72" height="38" rx="6" fill="url(#laptopGrad)" stroke="#64748B" stroke-width="1.5"/>
+        <!-- Logo Simbol Data/Code Menyala di Punggung Laptop -->
+        <circle cx="70" cy="120" r="5" fill="#38BDF8" opacity="0.85">
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <div class="about-story">
+      <h2>Curious about data.<br><span>Serious about quality.</span></h2>
+      <p>I'm <strong>Muhammad Riki Efendi</strong>, a Data Engineer with <strong>3+ years of experience</strong> building structured, scalable, and maintainable data solutions — from writing complex database logic to architecting enterprise ETL pipelines and lakehouse layers.</p>
+      <p class="dim">My work spans database programming, data integration, Medallion data modeling, and metadata governance. I prioritize data accuracy, clean logic, and pipelines that are easy to monitor in production.</p>
+
+      <div class="about-highlights">
+        <span class="about-pill">✦ 3+ Years Experience</span>
+        <span class="about-pill">✦ Telco &amp; Gov Scale</span>
+        <span class="about-pill">✦ ETL / ELT &amp; Lakehouse</span>
+        <span class="about-pill">✦ Data Lineage &amp; Quality</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Pilar Keahlian Utama -->
   <div class="stats">
-    <!-- 1. SQL (Database programming) -->
+    <!-- 1. SQL -->
     <div>
       <b aria-label="SQL">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -44,10 +1282,11 @@
           <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
         </svg>
       </b>
+      <span class="stat-title">SQL &amp; PL/SQL</span>
       <small>Database programming</small>
     </div>
 
-    <!-- 2. ETL (Data integration - banyak sumber masuk ke satu alur) -->
+    <!-- 2. ETL -->
     <div>
       <b aria-label="ETL">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -59,10 +1298,11 @@
           <path d="M14 12h2.5"></path>
         </svg>
       </b>
+      <span class="stat-title">ETL Pipelines</span>
       <small>Data integration</small>
     </div>
 
-    <!-- 3. ELT (Data transformation - olah & strukturkan data) -->
+    <!-- 3. ELT -->
     <div>
       <b aria-label="ELT">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -72,10 +1312,11 @@
           <path d="m12 12 3 3 3-3"></path>
         </svg>
       </b>
+      <span class="stat-title">ELT &amp; Modeling</span>
       <small>Data transformation</small>
     </div>
 
-    <!-- 4. DQ (Data quality - perisai centang validasi data) -->
+    <!-- 4. DQ -->
     <div>
       <b aria-label="Data Quality">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -83,97 +1324,562 @@
           <path d="m9 12 2 2 4-4"></path>
         </svg>
       </b>
-      <small>Data quality</small>
+      <span class="stat-title">Data Quality</span>
+      <small>Validation &amp; lineage</small>
     </div>
   </div>
 </section>
-<section class="wrap section" id="experience"><div class="sectionhead"><div><label>02 / EXPERIENCE</label><h2>Where I've <span>worked.</span></h2></div><p>A snapshot of my professional journey and the environments I've contributed to.</p></div>
-<div class="jobs">
-<article class="job">
-  <div class="logo logo-k" aria-label="Data Engineer Icon">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Database -->
-      <ellipse cx="9" cy="6" rx="6" ry="3"></ellipse>
-      <path d="M3 6v6c0 1.66 2.69 3 6 3s6-1.34 6-3V6"></path>
-      <path d="M3 12v6c0 1.66 2.69 3 6 3s6-1.34 6-3v-6"></path>
-      <!-- Data Pipeline Arrow -->
-      <path d="M17 12h5"></path>
-      <path d="m19 9 3 3-3 3"></path>
-    </svg>
-  </div>
-<div class="jobbody">
-  <small>DATA ENGINEERING <b>2026 — PRESENT</b></small>
-  <h3>Data Engineer / Backend Developer</h3>
-  <p class="company">PT SOLUSI247 Yogyakarta</p>
-  <p>Developing and supporting data pipelines, transformations, and structured data layers for integration and analytics workflows.</p>
-  <div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i> <i>Putty</i></div>
-  <div class="extra">Example scope: Bronze / Silver / Fact layers, ETL processing, data validation, and lineage integration. Edit this to match your exact responsibilities.</div>
-</div>
 
-  <button class="expand">↗</button>
-</article>
-<article class="job">
-  <div class="logo logo-db" aria-label="Database Icon">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-      <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
-    </svg>
+<style>
+  /* Jalur Timeline Vertikal di Sebelah Kiri Pengalaman Kerja */
+  #experience .jobs {
+    position: relative;
+    padding-left: 26px;
+  }
+  #experience .jobs::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 18px;
+    bottom: 18px;
+    width: 2px;
+    background: linear-gradient(to bottom, #38bdf8, rgba(56, 189, 248, 0.15));
+    border-radius: 2px;
+  }
+
+  /* Kartu Experience Interaktif */
+  #experience .job {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  /* Titik Node Timeline di Setiap Kartu */
+  #experience .job::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: 28px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #0f172a;
+    border: 2.5px solid #38bdf8;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  #experience .job:first-child::before {
+    background: #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  }
+  #experience .job:hover {
+    transform: translateX(4px);
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  #experience .job:hover::before {
+    transform: scale(1.2);
+  }
+
+  /* Badge Status "CURRENT" untuk Pekerjaan Aktif */
+  .exp-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+    font-size: 10px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  .exp-live-badge i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+  }
+
+  /* Peningkatan Keterbacaan Teks & Detail Extra */
+  #experience .jobbody h3 {
+    margin: 4px 0 2px;
+    font-size: 19px;
+  }
+  #experience .jobbody .company {
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 10px;
+  }
+  #experience .job .extra ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 5px;
+    line-height: 1.55;
+  }
+  #experience .job .expand {
+    transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+  }
+  #experience .job.open .expand {
+    transform: rotate(90deg);
+    color: #38bdf8;
+  }
+
+  @media (max-width: 640px) {
+    #experience .jobs {
+      padding-left: 18px;
+    }
+    #experience .job::before {
+      left: -17px;
+      width: 10px;
+      height: 10px;
+    }
+  }
+</style>
+
+<section class="wrap section" id="experience">
+  <div class="sectionhead">
+    <div>
+      <label>02 / EXPERIENCE</label>
+      <h2>Where I've <span>worked.</span></h2>
+    </div>
+    <p>A timeline of my career journey in data engineering, database development, and academic mentoring. Click any role to expand details.</p>
   </div>
-  <div class="jobbody">
-    <small>DATABASE DEVELOPMENT <b>2022 - 2025</b></small>
-    <h3>Oracle PL/SQL Developer</h3>
-    <p class="company">PT SOLUSI247 Yogyakarta</p>
-    <p>Created complex SQL queries, stored procedures, and database logic to process data according to predefined formulas and requirements.</p>
-    <div class="tags">Oracle <i>PL/SQL</i> <i>SQL</i> <i>Data Validation</i></div>
-    <div class="extra">Focus: query development, procedure maintenance, formula implementation, result validation, and data accuracy.</div>
+
+  <div class="jobs">
+    <!-- 1. Data Engineer / Backend Developer (2026 — PRESENT) -->
+    <article class="job">
+      <div class="logo logo-k" aria-label="Data Engineer Icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="9" cy="6" rx="6" ry="3"></ellipse>
+          <path d="M3 6v6c0 1.66 2.69 3 6 3s6-1.34 6-3V6"></path>
+          <path d="M3 12v6c0 1.66 2.69 3 6 3s6-1.34 6-3v-6"></path>
+          <path d="M17 12h5"></path>
+          <path d="m19 9 3 3-3 3"></path>
+        </svg>
+      </div>
+      <div class="jobbody">
+        <small>DATA ENGINEERING <b>2026 — PRESENT</b> <span class="exp-live-badge"><i></i>CURRENT</span></small>
+        <h3>Data Engineer / Backend Developer</h3>
+        <p class="company">PT SOLUSI247 · Yogyakarta</p>
+        <p>Developing and supporting scalable data pipelines, transformations, and structured lakehouse layers for enterprise analytics workflows.</p>
+        <div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i> <i>PuTTY</i></div>
+        <div class="extra">
+          <ul>
+            <li>Architected and maintained multi-layer ETL pipelines (Bronze, Silver, and Fact layers) on Hive &amp; HDFS.</li>
+            <li>Implemented automated data validation checks and end-to-end metadata lineage integration via OpenMetadata.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="expand" aria-label="Toggle job details">↗</button>
+    </article>
+
+    <!-- 2. Data Engineer - ETL & Apache NiFi (2025 — PRESENT) -->
+    <article class="job">
+      <div class="logo logo-k" aria-label="ETL Pipeline Icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          <path d="M8 14h8"></path>
+          <path d="m13 11 3 3-3 3"></path>
+        </svg>
+      </div>
+      <div class="jobbody">
+        <small>DATA ENGINEERING &amp; ETL <b>2025 — PRESENT</b> <span class="exp-live-badge"><i></i>CURRENT</span></small>
+        <h3>Data Engineer (ETL &amp; Integration)</h3>
+        <p class="company">PT SOLUSI247 · Yogyakarta</p>
+        <p>Designing and maintaining automated data ingestion workflows, dedicated standardization frameworks, and CI/CD pipeline deployments.</p>
+        <div class="tags">Apache NiFi <i>Python</i> <i>CI/CD</i> <i>PuTTY</i></div>
+        <div class="extra">
+          <ul>
+            <li>Built standardized ETL data flows for automated ingestion, direct movement, and script-based transformation using Apache NiFi.</li>
+            <li>Managed CI/CD pipeline deployments, server monitoring, and operational troubleshooting via SSH/PuTTY.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="expand" aria-label="Toggle job details">↗</button>
+    </article>
+
+    <!-- 3. Oracle PL/SQL Developer (2022 — 2025) -->
+    <article class="job">
+      <div class="logo logo-db" aria-label="Database Icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+        </svg>
+      </div>
+      <div class="jobbody">
+        <small>DATABASE DEVELOPMENT <b>2022 — 2025</b></small>
+        <h3>Oracle PL/SQL Developer</h3>
+        <p class="company">PT SOLUSI247 · Yogyakarta</p>
+        <p>Engineered complex SQL queries, stored procedures, and database business logic to process high-volume operational datasets.</p>
+        <div class="tags">Oracle <i>PL/SQL</i> <i>SQL</i> <i>Data Validation</i></div>
+        <div class="extra">
+          <ul>
+            <li>Developed and tuned stored procedures according to predefined analytical formulas and SLA requirements.</li>
+            <li>Performed thorough output reconciliation and data accuracy validation across reporting tables.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="expand" aria-label="Toggle job details">↗</button>
+    </article>
+
+    <!-- 4. Frontend / Backend Developer (2022 — 2025) -->
+    <article class="job">
+      <div class="logo logo-code" aria-label="Web Development Icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+          <line x1="14" y1="4" x2="10" y2="20"></line>
+        </svg>
+      </div>
+      <div class="jobbody">
+        <small>WEB DEVELOPMENT <b>2022 — 2025</b></small>
+        <h3>Frontend / Backend Developer</h3>
+        <p class="company">PT SOLUSI247 · Yogyakarta</p>
+        <p>Built responsive web interfaces and backend application features using CodeIgniter 3, REST APIs, and PostgreSQL.</p>
+        <div class="tags">PHP <i>CodeIgniter 3</i> <i>PostgreSQL</i> <i>REST API</i></div>
+        <div class="extra">
+          <ul>
+            <li>Designed and integrated RESTful API endpoints connecting web dashboards with PostgreSQL databases.</li>
+            <li>Handled end-to-end feature development, SQL query optimization, and production troubleshooting.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="expand" aria-label="Toggle job details">↗</button>
+    </article>
+
+    <!-- 5. Teaching Assistant (2018 — 2022) -->
+    <article class="job">
+      <div class="logo logo-edu" aria-label="Teaching Academic Icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+      </div>
+      <div class="jobbody">
+        <small>ACADEMIC <b>2018 — 2022</b></small>
+        <h3>Teaching Assistant</h3>
+        <p class="company">Universitas Amikom Yogyakarta</p>
+        <p>Assisted lecturers in delivering practical lab sessions for Database Systems, Web Programming, and Information Technology.</p>
+        <div class="tags">Database Systems <i>Web Programming</i> <i>Mentoring</i></div>
+        <div class="extra">
+          <ul>
+            <li>Prepared lab modules and practical assignments for relational database modeling and SQL fundamentals.</li>
+            <li>Guided students during coding sessions, evaluated lab tasks, and assisted in academic grading.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="expand" aria-label="Toggle job details">↗</button>
+    </article>
   </div>
-  <button class="expand">↗</button>
-</article>
-<article class="job"><div class="logo logo-code">&lt;/&gt;</div><div class="jobbody"><small>WEB DEVELOPMENT <b>2022 - 2025</b></small><h3>Frontend / Backend Developer</h3><p class="company">PT SOLUSI247 Yogyakarta</p>
-<p>Built web interfaces and application features using CodeIgniter 3, developed REST APIs, and worked with PostgreSQL queries.</p>
-<div class="tags">PHP <i>CodeIgniter 3</i> <i>PostgreSQL</i> <i>REST API</i></div><div class="extra">Focus: responsive interfaces, API development and integration, backend logic, PostgreSQL queries, and troubleshooting.</div></div><button class="expand">↗</button></article>
-<article class="job">
-  <div class="logo logo-edu" aria-label="Teaching Academic Icon">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-      <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-    </svg>
-  </div>
-  <div class="jobbody">
-    <small>ACADEMIC <b>2018 - 2022</b></small>
-    <h3>Teaching Assistant</h3>
-    <p class="company">Universitas Amikom Yogyakarta</p>
-    <p>Assisted lecturers in Database Systems, Introduction to Web Programming, and Introduction to Information Technology.</p>
-    <div class="tags">Database Systems <i>Web Programming</i> <i>Teaching</i></div>
-    <div class="extra">Prepared assignments, presented course materials, explained topics, and helped manage student grades.</div>
-  </div>
-  <button class="expand">↗</button>
-</article>
-</div>
-<p class="note">Company and client logos are editable placeholders. Use official logos only when you have permission to publish them. Replace bracketed names and dates with accurate information.</p>
 </section>
-<section class="wrap section" id="projects"><div class="sectionhead"><div><label>03 / SELECTED WORK</label><h2>Projects &amp; <span>contributions.</span></h2></div><p>Selected data engineering work across Telkomsel and Komdigi project environments.</p></div>
-<div class="company-projects">
-<div class="company-project-group telkomsel-group">
-<div class="company-heading"><div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=telkomsel.com&sz=128" alt="Telkomsel favicon"></div><div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Telkomsel</h3></div><span class="project-count">03 PROJECTS</span></div>
-<div class="project-grid">
-<article class="project-item"><div class="project-icon">⇄</div><small>PROJECT 01 · Dedicated Framework Standarization</small><h4>Data Integration Pipeline</h4><p>Building ETL flows for data ingestion, direct movement, script-based transformation, and query-based processing.</p><div class="tags">Apache NiFi <i>Python</i> <i>CI/CD</i><i>Putty</i></div></article>
-<article class="project-item"><div class="project-icon">⌘</div><small>PROJECT 02 · Inves Dashboard</small><h4>Transaction Data Processing</h4><p>Processing and standardizing transaction datasets, applying transformation rules, and validating output records.</p><div class="tags">PG/SQL <i>PostgreDb</i> <i>Data Validation</i></div></article>
-<article class="project-item"><div class="project-icon">▤</div><small>PROJECT 03 · TDirect Dashboard</small><h4>Database Query &amp; Procedures</h4><p>Developing SQL queries and database logic to prepare and deliver data according to defined business rules.</p><div class="tags">Oracle <i>PL/SQL</i> <i>Data Validation</i></div></article>
-</div></div>
-<div class="company-project-group komdigi-group">
-<div class="company-heading"><div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=komdigi.go.id&sz=128" alt="Komdigi favicon"></div><div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Komdigi</h3></div><span class="project-count">01 PROJECT</span></div>
-<div class="project-grid single">
-<article class="project-item"><div class="project-icon">⌁</div><small>PROJECT 01 · Pengadaan Core Data Management<p>Developing data processing workflows with PySpark, organizing datasets into Bronze, Silver, and Fact layers, and integrating metadata lineage with OpenMetadata.</p><div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i></div></article>
-</div></div></div>
-<p class="note">Project descriptions are concise portfolio summaries. Adjust them to match your actual contribution and only publish client names or logos when disclosure is permitted. Use approved brand assets if you want to replace the text-based logo marks.</p></section>
+
+<script>
+(function () {
+  const jobCards = document.querySelectorAll('#experience .job');
+  if (!jobCards.length) return;
+
+  // Buka detail pekerjaan terbaru secara otomatis agar langsung terbaca
+  jobCards[0].classList.add('open');
+
+  jobCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Cegah double-toggle jika skrip lama sudah menangani klik pada tombol .expand
+      if (e.target.closest('.expand')) return;
+      card.classList.toggle('open');
+    });
+  });
+})();
+</script>
+
+<!--css work -->
+<style>
+  .proj-tabs {
+    display: inline-flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 26px;
+    padding: 6px; border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .proj-tab {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+    border-radius: 12px; border: 1px solid transparent; background: transparent;
+    color: #94a3b8; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .proj-tab:hover { color: #f8fafc; background: rgba(255, 255, 255, 0.06); }
+  .proj-tab.active {
+    background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45); color: #7dd3fc;
+  }
+  .proj-tab img { width: 16px; height: 16px; border-radius: 4px; background: #fff; padding: 1px; }
+
+  .company-project-group { margin-bottom: 32px; }
+  .company-project-group.hidden-group { display: none; }
+  .company-mark img { background: #fff; padding: 3px; border-radius: 8px; }
+
+  .project-item {
+    position: relative; cursor: pointer; display: flex; flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  }
+  .project-item .proj-top {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .project-item .project-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.28); color: #38bdf8;
+  }
+  .project-item .proj-expand-hint {
+    font-family: 'DM Mono', monospace; font-size: 11px; color: #64748b; transition: color 0.2s ease;
+  }
+  .project-item:hover .proj-expand-hint { color: #38bdf8; }
+
+  .project-item .proj-code {
+    display: block; font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.04em; color: #38bdf8; margin-bottom: 6px;
+  }
+  .project-item h4 { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
+  .project-item p { font-size: 14px; line-height: 1.6; opacity: 0.88; margin: 0 0 14px; }
+
+  .proj-details {
+    max-height: 0; overflow: hidden; opacity: 0; margin-top: 0; padding-top: 0;
+    border-top: 1px dashed transparent; font-size: 13px; line-height: 1.55; color: #94a3b8;
+    transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease, padding-top 0.25s ease;
+  }
+  .project-item.open .proj-details {
+    max-height: 180px; opacity: 1; margin-top: 14px; padding-top: 12px;
+    border-top-color: rgba(255, 255, 255, 0.14);
+  }
+  .proj-details ul { margin: 0; padding-left: 16px; display: grid; gap: 4px; }
+</style>
+
+<section class="wrap section" id="projects">
+  <div class="sectionhead">
+    <div>
+      <label>03 / SELECTED WORK</label>
+      <h2>Projects &amp; <span>contributions.</span></h2>
+    </div>
+    <p>Selected data engineering work across Telkomsel and Komdigi project environments.</p>
+  </div>
+
+  <!-- Tab Filter Klien -->
+  <div class="proj-tabs" role="tablist">
+    <button class="proj-tab active" data-filter="all">All Projects (04)</button>
+    <button class="proj-tab" data-filter="telkomsel">Telkomsel (03)</button>
+    <button class="proj-tab" data-filter="komdigi">Komdigi (01)</button>
+  </div>
+
+  <div class="company-projects">
+    <!-- GRUP TELKOMSEL -->
+    <div class="company-project-group telkomsel-group" data-client="telkomsel">
+      <div class="company-heading">
+        <div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=telkomsel.com&sz=128" alt="Telkomsel favicon"></div>
+        <div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Telkomsel</h3></div>
+        <span class="project-count">03 PROJECTS</span>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-item">
+          <div>
+            <div class="proj-top"><div class="project-icon">⇄</div><span class="proj-expand-hint">+ Details</span></div>
+            <span class="proj-code">PROJECT 01 · Dedicated Framework Standarization</span>
+            <h4>Data Integration Pipeline</h4>
+            <p>Building ETL flows for data ingestion, direct movement, script-based transformation, and query-based processing.</p>
+          </div>
+          <div>
+            <div class="tags">Apache NiFi <i>Python</i> <i>CI/CD</i> <i>Putty</i></div>
+            <div class="proj-details">
+              <ul>
+                <li>Standardized reusable ingestion &amp; routing templates in Apache NiFi.</li>
+                <li>Automated deployment scripts and server verification via SSH/PuTTY.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-item">
+          <div>
+            <div class="proj-top"><div class="project-icon">⌘</div><span class="proj-expand-hint">+ Details</span></div>
+            <span class="proj-code">PROJECT 02 · Inves Dashboard</span>
+            <h4>Transaction Data Processing</h4>
+            <p>Processing and standardizing transaction datasets, applying transformation rules, and validating output records.</p>
+          </div>
+          <div>
+            <div class="tags">PG/SQL <i>PostgreDb</i> <i>Data Validation</i></div>
+            <div class="proj-details">
+              <ul>
+                <li>Implemented business calculation formulas using PostgreSQL functions.</li>
+                <li>Built reconciliation checks to ensure zero discrepancy on dashboard metrics.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-item">
+          <div>
+            <div class="proj-top"><div class="project-icon">▤</div><span class="proj-expand-hint">+ Details</span></div>
+            <span class="proj-code">PROJECT 03 · TDirect Dashboard</span>
+            <h4>Database Query &amp; Procedures</h4>
+            <p>Developing SQL queries and database logic to prepare and deliver data according to defined business rules.</p>
+          </div>
+          <div>
+            <div class="tags">Oracle <i>PL/SQL</i> <i>Data Validation</i></div>
+            <div class="proj-details">
+              <ul>
+                <li>Optimized complex Oracle PL/SQL procedures for reporting aggregates.</li>
+                <li>Maintained scheduled batch jobs and validated formula accuracy.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- GRUP KOMDIGI -->
+    <div class="company-project-group komdigi-group" data-client="komdigi">
+      <div class="company-heading">
+        <div class="company-mark"><img src="https://www.google.com/s2/favicons?domain=komdigi.go.id&sz=128" alt="Komdigi favicon"></div>
+        <div><small>CLIENT / PROJECT PORTFOLIO</small><h3>Komdigi</h3></div>
+        <span class="project-count">01 PROJECT</span>
+      </div>
+
+      <div class="project-grid single">
+        <article class="project-item">
+          <div>
+            <div class="proj-top"><div class="project-icon">⌁</div><span class="proj-expand-hint">+ Details</span></div>
+            <span class="proj-code">PROJECT 01 · Pengadaan Core Data Management</span>
+            <h4>Medallion Lakehouse &amp; Data Lineage</h4>
+            <p>Developing data processing workflows with PySpark, organizing datasets into Bronze, Silver, and Fact layers, and integrating metadata lineage with OpenMetadata.</p>
+          </div>
+          <div>
+            <div class="tags">PySpark <i>Hive</i> <i>HDFS</i> <i>OpenMetadata</i></div>
+            <div class="proj-details">
+              <ul>
+                <li>Built multi-layer ETL pipelines (Bronze raw → Silver cleansed → Fact tables) on Hive/HDFS.</li>
+                <li>Configured automated table schema &amp; end-to-end column lineage tracking in OpenMetadata.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  const section = document.getElementById('projects');
+  if (!section) return;
+
+  const tabs = section.querySelectorAll('.proj-tab');
+  const groups = section.querySelectorAll('.company-project-group');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.getAttribute('data-filter');
+
+      groups.forEach(group => {
+        if (filter === 'all' || group.getAttribute('data-client') === filter) {
+          group.classList.remove('hidden-group');
+        } else {
+          group.classList.add('hidden-group');
+        }
+      });
+    });
+  });
+
+  const cards = section.querySelectorAll('.project-item');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+      const hint = card.querySelector('.proj-expand-hint');
+      if (hint) {
+        hint.textContent = card.classList.contains('open') ? '× Close' : '+ Details';
+      }
+    });
+  });
+})();
+</script>
+
 <section class="wrap section" id="toolbox">
+  <style>
+    .tool-filters {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 24px;
+    }
+    .tool-filter-btn {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tool-filter-btn:hover {
+      color: #f8fafc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .tool-filter-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.55);
+      color: #7dd3fc;
+    }
+
+    /* Animasi Hover & Badge Kategori pada Kartu Toolbox */
+    #toolbox .tools > div {
+      position: relative;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    #toolbox .tools > div:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+    }
+    #toolbox .tools > div.hide-tool {
+      display: none !important;
+    }
+    .tool-role-badge {
+      margin-left: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      letter-spacing: 0.03em;
+    }
+  </style>
+
   <label>04 / TOOLBOX</label>
   <h2>Tools I <span>work with.</span></h2>
+
+  <!-- Filter Kategori -->
+  <div class="tool-filters" role="tablist" aria-label="Filter tools by category">
+    <button class="tool-filter-btn active" data-cat="all">All Stack (08)</button>
+    <button class="tool-filter-btn" data-cat="etl">Processing &amp; ETL</button>
+    <button class="tool-filter-btn" data-cat="db">Databases</button>
+    <button class="tool-filter-btn" data-cat="lake">Data Lake &amp; Governance</button>
+  </div>
+
   <div class="tools">
-    <!-- 1. SQL (Database Query) -->
-    <div>
+    <!-- 1. SQL -->
+    <div data-cat="db">
       <b class="s1" aria-label="SQL">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
@@ -181,38 +1887,37 @@
           <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
         </svg>
       </b>
-      <span>SQL<small>Query & database</small></span>
+      <span>SQL<small>Complex queries &amp; optimization</small></span>
+      <span class="tool-role-badge">QUERY</span>
     </div>
 
-<!-- 2. Python (Dua ular saling mengunci dengan jelas) -->
-	<div>
-		<b class="s2" aria-label="Python">
-		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-		  <!-- Ular Atas -->
-		  <path d="M12 2.5C9.2 2.5 8 3.6 8 5.8V8h4.5v1H6.2C4 9 2.5 10.4 2.5 13c0 2.5 1.3 4 3.5 4h2v-2.2c0-1.8 1.4-3.3 3.3-3.3h4.4c1.3 0 2.3-1 2.3-2.3V5.8c0-2.2-1.5-3.3-6-3.3z"/>
-		  <!-- Ular Bawah -->
-		  <path d="M12 21.5c2.8 0 4-1.1 4-3.3V16h-4.5v-1h6.3c2.2 0 3.7-1.4 3.7-4 0-2.5-1.3-4-3.5-4h-2v2.2c0 1.8-1.4 3.3-3.3 3.3H8.3C7 12.5 6 13.5 6 14.8v3.4c0 2.2 1.5 3.3 6 3.3z"/>
-		  <!-- Mata Ular -->
-		  <circle cx="9.8" cy="5.2" r="0.8" fill="currentColor" stroke="none"/>
-		  <circle cx="14.2" cy="18.8" r="0.8" fill="currentColor" stroke="none"/>
-		</svg>
-	  </b>
-		<span>Python<small>Data processing</small></span>
-	</div>
+    <!-- 2. Python -->
+    <div data-cat="etl">
+      <b class="s2" aria-label="Python">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.5C9.2 2.5 8 3.6 8 5.8V8h4.5v1H6.2C4 9 2.5 10.4 2.5 13c0 2.5 1.3 4 3.5 4h2v-2.2c0-1.8 1.4-3.3 3.3-3.3h4.4c1.3 0 2.3-1 2.3-2.3V5.8c0-2.2-1.5-3.3-6-3.3z"/>
+          <path d="M12 21.5c2.8 0 4-1.1 4-3.3V16h-4.5v-1h6.3c2.2 0 3.7-1.4 3.7-4 0-2.5-1.3-4-3.5-4h-2v2.2c0 1.8-1.4 3.3-3.3 3.3H8.3C7 12.5 6 13.5 6 14.8v3.4c0 2.2 1.5 3.3 6 3.3z"/>
+          <circle cx="9.8" cy="5.2" r="0.8" fill="currentColor" stroke="none"/>
+          <circle cx="14.2" cy="18.8" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+      </b>
+      <span>Python<small>Data scripts &amp; automation</small></span>
+      <span class="tool-role-badge">ETL</span>
+    </div>
 
-
-    <!-- 3. PySpark (Bintang Spark khas Apache Spark) -->
-    <div>
+    <!-- 3. PySpark -->
+    <div data-cat="etl">
       <b class="s3" aria-label="PySpark">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path>
         </svg>
       </b>
-      <span>PySpark<small>Distributed processing</small></span>
+      <span>PySpark<small>Bronze / Silver / Fact layers</small></span>
+      <span class="tool-role-badge">BIG DATA</span>
     </div>
 
-    <!-- 4. Apache NiFi (Aliran data / Water drop flow) -->
-    <div>
+    <!-- 4. Apache NiFi -->
+    <div data-cat="etl">
       <b class="s4" aria-label="Apache NiFi">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -220,61 +1925,57 @@
           <path d="m13 11 3 3-3 3"></path>
         </svg>
       </b>
-      <span>Apache NiFi<small>ETL workflows</small></span>
+      <span>Apache NiFi<small>Automated ingestion flows</small></span>
+      <span class="tool-role-badge">PIPELINE</span>
     </div>
 
-    <!-- 5. Oracle (Cincin kapsul merah khas Oracle) -->
-    <div>
+    <!-- 5. Oracle -->
+    <div data-cat="db">
       <b class="s5" aria-label="Oracle">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="7" width="20" height="10" rx="5"></rect>
         </svg>
       </b>
-      <span>Oracle<small>PL/SQL</small></span>
+      <span>Oracle<small>PL/SQL stored procedures</small></span>
+      <span class="tool-role-badge">RDBMS</span>
     </div>
 
-    <!-- 6. PostgreSQL (Siluet gajah minimalis / Elephant) -->
-<div>
-  <b class="s6" aria-label="PostgreSQL">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Kepala & Telinga Gajah -->
-      <path d="M15.5 4.5C13.8 3.2 11 3.2 9.2 4.5C6.8 3.8 4 5.5 4 9c0 3.2 2.2 5.5 4.5 5.8"/>
-      <path d="M15.5 4.5C18 4.2 20.5 6 20.5 9.2c0 2.8-1.8 4.8-4 5.3"/>
-      <!-- Belalai Melengkung ke Bawah -->
-      <path d="M12.5 11.5v6.2c0 1.8 1.2 2.8 2.5 2.8s2.2-1 2.2-2.2"/>
-      <!-- Gading Gajah -->
-      <path d="M10.5 14.5c-1.5.5-2.5 1.8-2.2 3.2"/>
-      <!-- Mata Gajah -->
-      <circle cx="10.2" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
-      <circle cx="14.8" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
-    </svg>
-  </b>
-  <span>PostgreSQL<small>SQL / PL/pgSQL</small></span>
-</div>
-<!-- 7. Hive / HDFS (Lebah Hive + Sarang Lebah Terdistribusi HDFS) -->
-<div>
-  <b class="s7" aria-label="Hive HDFS">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Sarang Lebah / Distributed Cluster (HDFS) -->
-      <polygon points="12 2.5 19.5 6.8 19.5 15.2 12 19.5 4.5 15.2 4.5 6.8 12 2.5"></polygon>
-      <!-- Siluet Lebah di Tengah (Apache Hive) -->
-      <ellipse cx="12" cy="11.5" rx="2.3" ry="3.8"></ellipse>
-      <!-- Sayap Lebah -->
-      <path d="M9.8 10.2C7.8 8.8 6.5 9.8 7.5 11.4c.5.8 1.5 1 2.3.8"></path>
-      <path d="M14.2 10.2c2-1.4 3.3-.4 2.3 1.2-.5.8-1.5 1-2.3.8"></path>
-      <!-- Garis Badan & Antena Lebah -->
-      <path d="M10 11h4"></path>
-      <path d="M10.3 13h3.4"></path>
-      <path d="M11 8l-1-1.5"></path>
-      <path d="M13 8l1-1.5"></path>
-    </svg>
-  </b>
-  <span>Hive / HDFS<small>Data lake</small></span>
-</div>
+    <!-- 6. PostgreSQL -->
+    <div data-cat="db">
+      <b class="s6" aria-label="PostgreSQL">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15.5 4.5C13.8 3.2 11 3.2 9.2 4.5C6.8 3.8 4 5.5 4 9c0 3.2 2.2 5.5 4.5 5.8"/>
+          <path d="M15.5 4.5C18 4.2 20.5 6 20.5 9.2c0 2.8-1.8 4.8-4 5.3"/>
+          <path d="M12.5 11.5v6.2c0 1.8 1.2 2.8 2.5 2.8s2.2-1 2.2-2.2"/>
+          <path d="M10.5 14.5c-1.5.5-2.5 1.8-2.2 3.2"/>
+          <circle cx="10.2" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
+          <circle cx="14.8" cy="8.5" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+      </b>
+      <span>PostgreSQL<small>PL/pgSQL &amp; data validation</small></span>
+      <span class="tool-role-badge">RDBMS</span>
+    </div>
 
+    <!-- 7. Hive / HDFS -->
+    <div data-cat="lake">
+      <b class="s7" aria-label="Hive HDFS">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2.5 19.5 6.8 19.5 15.2 12 19.5 4.5 15.2 4.5 6.8 12 2.5"></polygon>
+          <ellipse cx="12" cy="11.5" rx="2.3" ry="3.8"></ellipse>
+          <path d="M9.8 10.2C7.8 8.8 6.5 9.8 7.5 11.4c.5.8 1.5 1 2.3.8"></path>
+          <path d="M14.2 10.2c2-1.4 3.3-.4 2.3 1.2-.5.8-1.5 1-2.3.8"></path>
+          <path d="M10 11h4"></path>
+          <path d="M10.3 13h3.4"></path>
+          <path d="M11 8l-1-1.5"></path>
+          <path d="M13 8l1-1.5"></path>
+        </svg>
+      </b>
+      <span>Hive / HDFS<small>Distributed lakehouse storage</small></span>
+      <span class="tool-role-badge">DATA LAKE</span>
+    </div>
 
-    <!-- 8. OpenMetadata (Grafik node & lineage data) -->
-    <div>
+    <!-- 8. OpenMetadata -->
+    <div data-cat="lake">
       <b class="s8" aria-label="OpenMetadata">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="5" cy="12" r="2.5"></circle>
@@ -284,9 +1985,236 @@
           <path d="M7.5 13l9 4"></path>
         </svg>
       </b>
-      <span>OpenMetadata<small>Metadata & lineage</small></span>
+      <span>OpenMetadata<small>Catalog &amp; column lineage</small></span>
+      <span class="tool-role-badge">LINEAGE</span>
     </div>
   </div>
 </section>
-<section class="contact"><div class="wrap"><label>05 / GET IN TOUCH</label><h2>Let's make data<br><span>work better.</span></h2><p>Have a project or opportunity in mind? Feel free to reach out.</p><a class="outlink" href="https://github.com/yourusername">GitHub ↗</a><a class="outlink" href="https://linkedin.com/in/yourusername">LinkedIn ↗</a></div></section></main>
-<footer class="wrap"><span>© <b id="year"></b> Muhammad Riki Efendi</span><span>BUILT WITH CARE</span><a href="#home">BACK TO TOP ↑</a></footer><script src="script.js"></script></body></html>
+<script>
+(function () {
+  const btns = document.querySelectorAll('#toolbox .tool-filter-btn');
+  const cards = document.querySelectorAll('#toolbox .tools > div');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-cat');
+      cards.forEach(card => {
+        card.classList.toggle('hide-tool', cat !== 'all' && card.getAttribute('data-cat') !== cat);
+      });
+    });
+  });
+})();
+</script>
+<style>
+  #contact .contact-card {
+    position: relative;
+    padding: 36px 32px;
+    border-radius: 26px;
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.11), rgba(15, 23, 42, 0.65));
+    border: 1px solid rgba(56, 189, 248, 0.32);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+  }
+
+  /* Baris Status & Info Penting */
+  .contact-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0 22px;
+  }
+  .contact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+  }
+  .contact-badge.status-open {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+  }
+  .status-dot-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulseGreen 2s infinite;
+  }
+  @keyframes pulseGreen {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.65); }
+    70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  }
+
+  /* Grid Tombol Aksi Interaktif */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .contact-action-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background 0.25s ease;
+  }
+  .contact-action-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(56, 189, 248, 0.12);
+  }
+  .contact-action-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+  .contact-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: rgba(56, 189, 248, 0.14);
+    color: #38bdf8;
+    flex-shrink: 0;
+  }
+  .contact-action-left strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .contact-action-left small {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .contact-arrow {
+    font-size: 15px;
+    color: #64748b;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .contact-action-card:hover .contact-arrow {
+    color: #38bdf8;
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 640px) {
+    #contact .contact-card {
+      padding: 24px 18px;
+    }
+  }
+</style>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <label>05 / GET IN TOUCH</label>
+      <h2>Let's make data<br><span>work better.</span></h2>
+      <p>Interested in collaborating on data pipelines, analytics infrastructure, or Data Engineer roles? Choose the quickest way to connect below.</p>
+
+      <!-- Informasi Penting: Status Kerja, Lokasi & Jam Waktu -->
+      <div class="contact-meta-row">
+        <span class="contact-badge status-open">
+          <i class="status-dot-pulse"></i> Open to Work &amp; Projects
+        </span>
+        <span class="contact-badge">
+          📍 Yogyakarta, Indonesia (WIB / UTC+7)
+        </span>
+        <span class="contact-badge">
+          💼 On-site / Hybrid / Remote
+        </span>
+      </div>
+
+      <!-- 3 Kartu Aksi Interaktif -->
+      <div class="contact-grid">
+        <!-- 1. Copy Email / Request CV -->
+        <button type="button" class="contact-action-card" id="contact-copy-btn">
+          <div class="contact-action-left">
+            <span class="contact-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <div>
+              <strong id="contact-copy-title">Copy Email Address</strong>
+              <small>rikifendy23@gmail.com</small>
+            </div>
+          </div>
+          <span class="contact-arrow" id="contact-copy-icon">⧉</span>
+        </button>
+
+        <!-- 2. GitHub -->
+        <a class="contact-action-card" href="https://github.com/Riki157" target="_blank" rel="noopener noreferrer">
+          <div class="contact-action-left">
+            <span class="contact-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </span>
+            <div>
+              <strong>GitHub</strong>
+              <small>Explore code &amp; repos</small>
+            </div>
+          </div>
+          <span class="contact-arrow">↗</span>
+        </a>
+
+        <!-- 3. LinkedIn -->
+        <a class="contact-action-card" href="https://www.linkedin.com/in/muhammad-riki-efendi-10b419231/" target="_blank" rel="noopener noreferrer">
+          <div class="contact-action-left">
+            <span class="contact-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </span>
+            <div>
+              <strong>LinkedIn</strong>
+              <small>Professional network</small>
+            </div>
+          </div>
+          <span class="contact-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  const copyCard = document.getElementById('contact-copy-btn');
+  const titleEl = document.getElementById('contact-copy-title');
+  const iconEl = document.getElementById('contact-copy-icon');
+
+  if (copyCard) {
+    copyCard.addEventListener('click', () => {
+      navigator.clipboard.writeText('rikifendy23@gmail.com');
+      titleEl.textContent = 'Email Copied!';
+      iconEl.textContent = '✓';
+      copyCard.style.borderColor = '#22c55e';
+      setTimeout(() => {
+        titleEl.textContent = 'Copy Email Address';
+        iconEl.textContent = '⧉';
+        copyCard.style.borderColor = '';
+      }, 2000);
+    });
+  }
+})();
+</script>
+
+</main>
+<footer class="wrap"><span>© <b id="year"></b> Muhammad Riki Efendi</span><a href="#home">BACK TO TOP ↑</a></footer><script src="script.js"></script></body></html>
