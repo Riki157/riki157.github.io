@@ -555,7 +555,7 @@ body.light .tool-role-badge,
     <button id="menu" aria-label="Menu">☰</button>
 
 <div id="links" class="macos-dock" role="navigation" aria-label="Main Dock Navigation">
-  <!-- 1. Finder / System Info (Muted Sky Blue & Soft Slate) -->
+  <!-- 1. Finder / Request CV -->
   <button class="dock-item" id="mac-spec-btn" data-label="Finder / About Me (⌘K)" aria-label="About This Engineer" style="overflow: hidden; border: 1px solid rgba(125, 211, 252, 0.25); padding: 0;">
     <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" xmlns="http://w3.org">
       <defs>
@@ -579,7 +579,7 @@ body.light .tool-role-badge,
 
   <span class="dock-sep" aria-hidden="true"></span>
 
-  <!-- 2. About (Soft Indigo Tinted Glass) -->
+  <!-- 2. About -->
   <a class="dock-item" href="#about" data-label="About" aria-label="About" style="overflow: hidden; border: 1px solid rgba(165, 180, 252, 0.25); padding: 0; background: linear-gradient(145deg, rgba(99, 102, 241, 0.28), rgba(67, 56, 202, 0.16));">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A5B4FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="8.5" r="4" fill="rgba(165, 180, 252, 0.2)"/>
@@ -587,7 +587,7 @@ body.light .tool-role-badge,
     </svg>
   </a>
 
-  <!-- 3. Experience (Muted Amber / Warm Terracotta Glass) -->
+  <!-- 3. Experience -->
   <a class="dock-item" href="#experience" data-label="Experience" aria-label="Experience" style="overflow: hidden; border: 1px solid rgba(253, 186, 116, 0.25); padding: 0; background: linear-gradient(145deg, rgba(249, 115, 22, 0.26), rgba(194, 65, 12, 0.15));">
     <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#FDBA74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="7" width="18" height="13" rx="2.5" fill="rgba(253, 186, 116, 0.16)"/>
@@ -596,14 +596,14 @@ body.light .tool-role-badge,
     </svg>
   </a>
 
-  <!-- 4. Projects (Soft Cyan / Teal Glass - Senada dengan Aksen Teks Halaman) -->
+  <!-- 4. Projects -->
   <a class="dock-item" href="#projects" data-label="Projects" aria-label="Projects" style="overflow: hidden; border: 1px solid rgba(103, 232, 249, 0.28); padding: 0; background: linear-gradient(145deg, rgba(6, 182, 212, 0.28), rgba(14, 116, 144, 0.16));">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="rgba(103, 232, 249, 0.2)"/>
     </svg>
   </a>
 
-  <!-- 5. Toolbox (Dark Slate Terminal dengan Aksen Emerald Lembut) -->
+  <!-- 5. Toolbox -->
   <a class="dock-item" href="#toolbox" data-label="Toolbox" aria-label="Toolbox" style="overflow: hidden; border: 1px solid rgba(110, 231, 183, 0.22); padding: 0; background: linear-gradient(145deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.85));">
     <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="5 8 10 12 5 16" stroke="#6EE7B7"/>
@@ -611,7 +611,7 @@ body.light .tool-role-badge,
     </svg>
   </a>
 
-  <!-- 6. Contact (Muted Sky Blue Glass) -->
+  <!-- 6. Contact -->
   <a class="dock-item" href="#contact" data-label="Contact" aria-label="Contact" style="overflow: hidden; border: 1px solid rgba(147, 197, 253, 0.25); padding: 0; background: linear-gradient(145deg, rgba(59, 130, 246, 0.26), rgba(29, 78, 216, 0.15));">
     <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="5" width="18" height="14" rx="2.5" fill="rgba(147, 197, 253, 0.16)"/>
@@ -621,23 +621,54 @@ body.light .tool-role-badge,
 
   <span class="dock-sep" aria-hidden="true"></span>
 
-  <!-- 7. Theme Toggle (Muted Silver Slate Glass) -->
+  <!-- 7. Theme Toggle -->
   <button class="dock-item" id="theme" data-label="Theme" aria-label="Toggle theme" style="overflow: hidden; border: 1px solid rgba(203, 213, 225, 0.22); padding: 0; background: linear-gradient(145deg, rgba(148, 163, 184, 0.24), rgba(71, 85, 105, 0.15));">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="8.5" fill="rgba(203, 213, 225, 0.14)"/>
       <path d="M12 3.5a8.5 8.5 0 0 0 0 17V3.5z" fill="#CBD5E1"/>
     </svg>
   </button>
-  <!-- Tombol Pemicu Menu Khusus HP -->
-<button id="mobile-dock-toggle" type="button" aria-label="Buka Menu">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <rect x="3" y="3" width="5" height="5" rx="1.2"/><rect x="9.5" y="3" width="5" height="5" rx="1.2"/><rect x="16" y="3" width="5" height="5" rx="1.2"/>
-    <rect x="3" y="9.5" width="5" height="5" rx="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/><rect x="16" y="9.5" width="5" height="5" rx="1.2"/>
-    <rect x="3" y="16" width="5" height="5" rx="1.2"/><rect x="9.5" y="16" width="5" height="5" rx="1.2"/><rect x="16" y="16" width="5" height="5" rx="1.2"/>
-  </svg>
-</button>
-<div id="mobile-launchpad-backdrop"></div>
+
+  <!-- 8. Ask RickyAI (Menyatu di dalam Dock) -->
+  <button class="dock-item" id="rickyai-trigger-btn" type="button" data-label="Ask RickyAI ✦" aria-label="Chat with RickyAI" style="overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.45); padding: 0; background: linear-gradient(145deg, rgba(14, 165, 233, 0.28), rgba(99, 102, 241, 0.25));">
+    <svg viewBox="0 0 64 64" width="100%" height="100%" xmlns="http://w3.org">
+      <defs>
+        <radialGradient id="dockAiSkin" cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#F7C9A9"/>
+          <stop offset="100%" stop-color="#E2A37D"/>
+        </radialGradient>
+        <linearGradient id="dockAiHair" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2D3142"/>
+          <stop offset="100%" stop-color="#0F172A"/>
+        </linearGradient>
+      </defs>
+      <path d="M12 64 C14 50, 23 46, 32 46 C41 46, 50 50, 52 64 Z" fill="#38BDF8"/>
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0 0; 0 -1.5; 0 0" dur="2.6s" repeatCount="indefinite"/>
+        <rect x="19" y="15" width="26" height="30" rx="13" fill="url(#dockAiSkin)"/>
+        <ellipse cx="23.5" cy="34" rx="2.6" ry="1.5" fill="#F43F5E" opacity="0.35"/>
+        <ellipse cx="40.5" cy="34" rx="2.6" ry="1.5" fill="#F43F5E" opacity="0.35"/>
+        <ellipse cx="26.5" cy="28.5" rx="2.2" ry="2.6" fill="#0F172A">
+          <animate attributeName="ry" values="2.6;2.6;0.2;2.6;2.6" keyTimes="0;0.9;0.94;0.98;1" dur="3.4s" repeatCount="indefinite"/>
+        </ellipse>
+        <circle cx="27.2" cy="27.6" r="0.8" fill="#FFFFFF"/>
+        <ellipse cx="37.5" cy="28.5" rx="2.2" ry="2.6" fill="#0F172A">
+          <animate attributeName="ry" values="2.6;2.6;0.2;2.6;2.6" keyTimes="0;0.9;0.94;0.98;1" dur="3.4s" repeatCount="indefinite"/>
+        </ellipse>
+        <circle cx="38.2" cy="27.6" r="0.8" fill="#FFFFFF"/>
+        <rect x="21.5" y="25" width="9.5" height="6.8" rx="2.5" fill="#FFFFFF" fill-opacity="0.15" stroke="#0F172A" stroke-width="1.5"/>
+        <rect x="33" y="25" width="9.5" height="6.8" rx="2.5" fill="#FFFFFF" fill-opacity="0.15" stroke="#0F172A" stroke-width="1.5"/>
+        <line x1="31" y1="28" x2="33" y2="28" stroke="#0F172A" stroke-width="1.5"/>
+        <path d="M28.5 37.5 Q32 41 35.5 37.5" fill="none" stroke="#7C2D12" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M18 26 C17 15, 24 9, 33 9.5 C41 9.5, 47 15, 46 26 C45 20, 42 18, 37 18 C33 18, 28 20, 23 19 C20 18.5, 19 22, 18 26 Z" fill="url(#dockAiHair)"/>
+      </g>
+      <path d="M53 6 L54.4 9.6 L58 11 L54.4 12.4 L53 16 L51.6 12.4 L48 11 L51.6 9.6 Z" fill="#38BDF8">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </path>
+    </svg>
+  </button>
 </div>
+
 
     </div>
   </nav>
@@ -2651,6 +2682,700 @@ body.light .footer-top-btn,
   }
 }
 </style>
+<!-- chat bot ai -->
+<style>
+/* Tombol Melayang Ask RickyAI di Pojok Kiri Bawah */
+#rickyai-trigger-btn {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  z-index: 99997;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.88));
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #f8fafc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 18px rgba(56, 189, 248, 0.22);
+  cursor: pointer;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+#rickyai-trigger-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  border-color: #38bdf8;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(56, 189, 248, 0.45);
+}
+#rickyai-trigger-btn:active {
+  transform: scale(0.95);
+}
+.rickyai-sparkle {
+  display: inline-flex;
+  color: #38bdf8;
+  animation: aiSparklePulse 2.4s ease-in-out infinite;
+}
+.rickyai-label-grad {
+  background: linear-gradient(120deg, #38bdf8, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+@keyframes aiSparklePulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+  50% { transform: scale(1.2) rotate(12deg); opacity: 1; }
+}
+
+/* Modal Pop-up Chat RickyAI */
+#secret-ai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#secret-ai-overlay.open {
+  display: flex;
+}
+.rickyai-window {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  font-family: 'DM Sans', sans-serif;
+  color: #f8fafc;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.rickyai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+#ai-chat-box {
+  padding: 16px;
+  height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ai-msg-bot {
+  align-self: flex-start;
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 4px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #e2e8f0;
+}
+.ai-msg-user {
+  align-self: flex-end;
+  max-width: 80%;
+  padding: 9px 14px;
+  border-radius: 16px 16px 4px 16px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+}
+.ai-chips-bar {
+  padding: 8px 14px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+.ai-chip {
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#ai-chat-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #090d16;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+#ai-chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 8px 14px;
+  outline: none;
+  color: #f8fafc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+}
+#ai-send-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #rickyai-trigger-btn {
+    bottom: 20px;
+    left: 16px;
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Reset agar #rickyai-trigger-btn duduk sejajar di dalam Dock */
+#links.macos-dock #rickyai-trigger-btn {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  border-radius: 14px !important;
+}
+
+@media (max-width: 768px) {
+  #links.macos-dock #rickyai-trigger-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
+}
+/* Efek Pendaran Cahaya & Badge "AI" agar Langsung Mencolok */
+#links.macos-dock #rickyai-trigger-btn {
+  overflow: visible !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.7) !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35), inset 0 0 10px rgba(129, 140, 248, 0.25) !important;
+  animation: aiIconGlow 3s ease-in-out infinite;
+}
+
+#links.macos-dock #rickyai-trigger-btn svg {
+  border-radius: 12px;
+}
+
+/* Lencana Kecil "AI" di Pojok Kanan Bawah Ikon */
+#links.macos-dock #rickyai-trigger-btn::before {
+  content: "AI";
+  position: absolute;
+  bottom: -4px;
+  right: -5px;
+  z-index: 3;
+  padding: 1.5px 5px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #090d16;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.6);
+  pointer-events: none;
+}
+
+@keyframes aiIconGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.3), inset 0 0 8px rgba(129, 140, 248, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.65), inset 0 0 12px rgba(129, 140, 248, 0.4);
+  }
+}
+/* Memperhalus Scrollbar di Dalam Chat & Quick Chips */
+#ai-chat-box::-webkit-scrollbar {
+  width: 5px;
+}
+#ai-chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+#ai-chat-box::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
+}
+.ai-chips-bar::-webkit-scrollbar {
+  height: 4px;
+}
+.ai-chips-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ai-chips-bar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
+}
+
+/* Banner Profil Avatar RickyAI yang Menonjol di Bagian Atas Window */
+.rickyai-profile-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(99, 102, 241, 0.1));
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+}
+.rickyai-hero-avatar {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 50% 30%, #1e293b, #090d16);
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+}
+.rickyai-banner-info strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+.rickyai-banner-badge {
+  padding: 1.5px 6px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #090d16;
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 800;
+}
+.rickyai-banner-info small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* Baris Pesan Bot dengan Avatar Mini di Sebelah Kiri */
+.ai-bot-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  align-self: flex-start;
+  max-width: 90%;
+}
+.ai-mini-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #0f172a;
+  border: 1.5px solid rgba(56, 189, 248, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-bot-row .ai-msg-bot {
+  max-width: 100%;
+}
+
+</style>
+
+
+
+<!-- Pop-up Window RickyAI -->
+<div id="secret-ai-overlay" role="dialog" aria-modal="true" aria-label="RickyAI Chat">
+  <div class="rickyai-window">
+    <!-- Titlebar macOS -->
+    <div class="rickyai-header">
+      <div style="display:flex;gap:6px;">
+        <button id="close-secret-ai" type="button" style="width:12px;height:12px;border-radius:50%;background:#ff5f56;border:none;cursor:pointer;" aria-label="Close"></button>
+        <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;"></span>
+      </div>
+      <span style="font-size:11.5px;font-weight:700;color:#94a3b8;">RickyAI · Virtual Assistant</span>
+      <span style="width:36px;"></span>
+    </div>
+
+    <!-- Banner Avatar Laki-laki Lucu yang Menonjol -->
+    <div class="rickyai-profile-banner">
+      <div class="rickyai-hero-avatar">
+        <svg viewBox="0 0 64 64" width="100%" height="100%" xmlns="http://w3.org">
+          <defs>
+            <radialGradient id="chatHeaderSkin" cx="45%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#F7C9A9"/>
+              <stop offset="100%" stop-color="#E2A37D"/>
+            </radialGradient>
+            <linearGradient id="chatHeaderHair" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2D3142"/>
+              <stop offset="100%" stop-color="#0F172A"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 64 C14 50, 23 46, 32 46 C41 46, 50 50, 52 64 Z" fill="#38BDF8"/>
+          <g>
+            <animateTransform attributeName="transform" type="translate" values="0 0; 0 -1.5; 0 0" dur="2.6s" repeatCount="indefinite"/>
+            <rect x="19" y="15" width="26" height="30" rx="13" fill="url(#chatHeaderSkin)"/>
+            <ellipse cx="23.5" cy="34" rx="2.6" ry="1.5" fill="#F43F5E" opacity="0.35"/>
+            <ellipse cx="40.5" cy="34" rx="2.6" ry="1.5" fill="#F43F5E" opacity="0.35"/>
+            <ellipse cx="26.5" cy="28.5" rx="2.2" ry="2.6" fill="#0F172A">
+              <animate attributeName="ry" values="2.6;2.6;0.2;2.6;2.6" keyTimes="0;0.9;0.94;0.98;1" dur="3.4s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle cx="27.2" cy="27.6" r="0.8" fill="#FFFFFF"/>
+            <ellipse cx="37.5" cy="28.5" rx="2.2" ry="2.6" fill="#0F172A">
+              <animate attributeName="ry" values="2.6;2.6;0.2;2.6;2.6" keyTimes="0;0.9;0.94;0.98;1" dur="3.4s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle cx="38.2" cy="27.6" r="0.8" fill="#FFFFFF"/>
+            <rect x="21.5" y="25" width="9.5" height="6.8" rx="2.5" fill="#FFFFFF" fill-opacity="0.15" stroke="#0F172A" stroke-width="1.5"/>
+            <rect x="33" y="25" width="9.5" height="6.8" rx="2.5" fill="#FFFFFF" fill-opacity="0.15" stroke="#0F172A" stroke-width="1.5"/>
+            <line x1="31" y1="28" x2="33" y2="28" stroke="#0F172A" stroke-width="1.5"/>
+            <path d="M28.5 37.5 Q32 41 35.5 37.5" fill="none" stroke="#7C2D12" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M18 26 C17 15, 24 9, 33 9.5 C41 9.5, 47 15, 46 26 C45 20, 42 18, 37 18 C33 18, 28 20, 23 19 C20 18.5, 19 22, 18 26 Z" fill="url(#chatHeaderHair)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="rickyai-banner-info">
+        <strong>RickyAI <span class="rickyai-banner-badge">AI</span></strong>
+        <small><span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span> Online · Siap bantu jelasin portofolio Riki</small>
+      </div>
+    </div>
+
+    <!-- Area Chat -->
+    <div id="ai-chat-box">
+      <div class="ai-bot-row">
+        <div class="ai-mini-avatar" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M12 64 C14 50, 23 46, 32 46 C41 46, 50 50, 52 64 Z" fill="#38BDF8"/><rect x="19" y="15" width="26" height="30" rx="13" fill="#F2BE9B"/><circle cx="26.5" cy="28.5" r="2.3" fill="#0F172A"/><circle cx="37.5" cy="28.5" r="2.3" fill="#0F172A"/><rect x="21.5" y="25" width="9.5" height="6.8" rx="2.5" fill="none" stroke="#0F172A" stroke-width="1.6"/><rect x="33" y="25" width="9.5" height="6.8" rx="2.5" fill="none" stroke="#0F172A" stroke-width="1.6"/><path d="M28.5 37.5 Q32 41 35.5 37.5" fill="none" stroke="#7C2D12" stroke-width="1.8" stroke-linecap="round"/><path d="M18 26 C17 15, 24 9, 33 9.5 C41 9.5, 47 15, 46 26 C45 20, 42 18, 37 18 C33 18, 28 20, 23 19 C20 18.5, 19 22, 18 26 Z" fill="#1E202B"/></svg>
+        </div>
+        <div class="ai-msg-bot">
+          Halo! 👋 Aku <b>RickyAI</b>. Mau tanya soal isi portofolio, pengalaman kerja, proyek, atau kontak Riki?
+        </div>
+      </div>
+    </div>
+
+    <!-- Tombol Pertanyaan Cepat -->
+    <div class="ai-chips-bar">
+      <button type="button" class="ai-chip" data-q="Isi web ini apa aja?">🗺️ Isi Portofolio</button>
+      <button type="button" class="ai-chip" data-q="Siapa Riki?">✨ Siapa Riki?</button>
+      <button type="button" class="ai-chip" data-q="Kerja dimana?">🏢 Tempat Kerja</button>
+      <button type="button" class="ai-chip" data-q="Keahlian utama?">🛠️ Keahlian</button>
+      <button type="button" class="ai-chip" data-q="Pengalaman proyek?">🚀 Proyek</button>
+      <button type="button" class="ai-chip" data-q="Cara hubungi / CV?">📩 Kontak &amp; CV</button>
+	  <button type="button" class="ai-chip" data-q="Simulasi ETL data">⚙️ Simulasi ETL</button>
+	  <button type="button" class="ai-chip" data-q="/sql">💻 Jalankan SQL</button>
+	  <button type="button" class="ai-chip" data-q="Cek kecocokan role Data Engineer">🎯 Cek Kecocokan</button>
+    </div>
+
+    <!-- Input Ketik Pesan -->
+    <form id="ai-chat-form">
+      <input id="ai-chat-input" type="text" placeholder="Tanya sesuatu ke RickyAI..." autocomplete="off">
+      <button id="ai-send-btn" type="submit" aria-label="Send">↑</button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  const triggerBtn = document.getElementById('rickyai-trigger-btn');
+  const aiOverlay = document.getElementById('secret-ai-overlay');
+  const closeBtn = document.getElementById('close-secret-ai');
+  const chatBox = document.getElementById('ai-chat-box');
+  const chatForm = document.getElementById('ai-chat-form');
+  const chatInput = document.getElementById('ai-chat-input');
+
+  if (!triggerBtn || !aiOverlay) return;
+
+  triggerBtn.onclick = () => {
+    aiOverlay.classList.add('open');
+    setTimeout(() => chatInput.focus(), 50);
+  };
+  closeBtn.onclick = () => aiOverlay.classList.remove('open');
+  aiOverlay.onclick = (e) => { if (e.target === aiOverlay) aiOverlay.classList.remove('open'); };
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') aiOverlay.classList.remove('open'); });
+
+   function getBotReply(text) {
+    const q = text.toLowerCase();
+
+    // 0. Identitas AI
+    if (q.includes('kamu') || q.includes('sapa') || q.includes('siapa ini') || q.includes('who are you')) {
+      return 'Saya <b>RickyAI</b> ✨ — asisten virtual interaktif di portofolio <b>Muhammad Riki Efendi</b>. Saya bisa merangkum profil, insight teknis proyek, atau mengarahkanmu langsung ke bagian yang kamu cari!';
+    }
+
+    // 1. Ringkasan Isi Portofolio + Tombol Lompat Cepat
+    if (q.includes('isi') || q.includes('web') || q.includes('portofolio') || q.includes('portfolio') || q.includes('halaman')) {
+      return 'Website ini berisi <b>5 bagian utama</b>:<br>' +
+        '• <b>01 About Me:</b> Ringkasan 3+ tahun pengalaman &amp; 4 pilar kerja.<br>' +
+        '• <b>02 Experience:</b> Perjalanan karier di PT SOLUSI247 &amp; Amikom.<br>' +
+        '• <b>03 Projects:</b> Studi kasus ETL &amp; database (Telkomsel &amp; Komdigi).<br>' +
+        '• <b>04 Toolbox:</b> Stack teknologi SQL, NiFi, PySpark, &amp; OpenMetadata.<br>' +
+        '• <b>05 Contact:</b> Jalur koneksi cepat.<br><br>' +
+        '<a href="#about" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\')" style="display:inline-block;padding:5px 11px;border-radius:8px;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.45);color:#7dd3fc;text-decoration:none;font-size:11.5px;font-weight:700;">Mulai baca dari About Me ↘</a>';
+    }
+
+    // 2. Tempat Kerja & Karier + Tombol ke Timeline Experience
+    if (q.includes('kerja') || q.includes('perusahaan') || q.includes('kantor') || q.includes('solusi') || q.includes('experience') || q.includes('karier')) {
+      return 'Riki berkarier di <b>PT SOLUSI247 Yogyakarta</b> (2022 — Sekarang) sebagai Data Engineer, Oracle PL/SQL Developer, dan Web Developer, serta pernah menjadi Teaching Assistant di <b>Universitas Amikom Yogyakarta</b>.<br><br>' +
+        '<a href="#experience" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\')" style="display:inline-block;padding:5px 11px;border-radius:8px;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.45);color:#7dd3fc;text-decoration:none;font-size:11.5px;font-weight:700;">Lihat Timeline Experience ↘</a>';
+    }
+
+    // 3. Proyek Klien + Tombol ke Bagian Projects
+    if (q.includes('proyek') || q.includes('project') || q.includes('telkomsel') || q.includes('komdigi')) {
+      return 'Melalui <b>PT SOLUSI247</b>, Riki berkontribusi di 2 lingkungan enterprise:<br>' +
+        '• <b>Telkomsel (3 Proyek):</b> Framework ETL Apache NiFi, Inves Dashboard, &amp; TDirect Dashboard.<br>' +
+        '• <b>Komdigi (1 Proyek):</b> Pengadaan Core Data Management (PySpark Bronze/Silver/Fact &amp; OpenMetadata).<br><br>' +
+        '<a href="#projects" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\')" style="display:inline-block;padding:5px 11px;border-radius:8px;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.45);color:#7dd3fc;text-decoration:none;font-size:11.5px;font-weight:700;">Buka Studi Kasus Projects ↘</a>';
+    }
+
+    // 4. Skill / Tech Stack + Tombol ke Toolbox
+    if (q.includes('skill') || q.includes('keahlian') || q.includes('tools') || q.includes('bisa') || q.includes('stack')) {
+      return 'Fokus utama Riki ada di <b>SQL, Oracle PL/SQL, PostgreSQL, Apache NiFi, dan Python</b>, serta berkontribusi pada workflow <b>PySpark, Hive/HDFS, dan OpenMetadata</b>.<br><br>' +
+        '<a href="#toolbox" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\')" style="display:inline-block;padding:5px 11px;border-radius:8px;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.45);color:#7dd3fc;text-decoration:none;font-size:11.5px;font-weight:700;">Jelajahi Toolbox ↘</a>';
+    }
+
+    // 5. Kontak & CV + Tombol Buka Jendela Finder Request CV
+    if (q.includes('kontak') || q.includes('email') || q.includes('cv') || q.includes('hubungi') || q.includes('hire') || q.includes('lokasi')) {
+      return 'Riki berbasis di <b>Yogyakarta (WIB)</b> dan terbuka untuk peluang baru (<i>On-site / Hybrid / Remote</i>).<br><br>' +
+        '<button type="button" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\'); document.getElementById(\'mac-spec-btn\').click();" style="padding:6px 12px;border-radius:8px;background:#38bdf8;border:none;color:#0f172a;font-size:11.5px;font-weight:800;cursor:pointer;">Buka Finder &amp; Request CV ↗</button>';
+    }
+
+    // 6. Profil Umum Riki
+    if (q.includes('siapa') || q.includes('riki') || q.includes('ricky') || q.includes('profil') || q.includes('halo') || q.includes('hai')) {
+      return '<b>Muhammad Riki Efendi</b> adalah Data Engineer &amp; SQL Specialist di <b>PT SOLUSI247 Yogyakarta</b> dengan pengalaman 3+ tahun dalam pengolahan data, logika database, dan pipeline ETL.';
+    }
+    // Simulasi Pipeline Bronze -> Silver -> Fact di dalam Chat RickyAI
+    if (q.includes('simulasi') || q.includes('etl') || q.includes('bronze') || q.includes('silver') || q.includes('fact') || q.includes('contoh data')) {
+      return 'Ini contoh bagaimana Riki mengolah data kotor hingga siap analisis (<b>Medallion Pipeline</b>):<br><br>' +
+        '<div style="font-family:\'DM Mono\',monospace;font-size:11px;background:rgba(9,13,22,0.85);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:8px 10px;overflow-x:auto;">' +
+        '<div style="color:#f59e0b;margin-bottom:4px;"><b>1. BRONZE (Raw Input):</b></div>' +
+        '<div style="color:#94a3b8;margin-bottom:8px;">TRX-01 | yogya | 150000<br>TRX-01 | yogya | 150000 <span style="color:#fda4af;">(Duplikat)</span><br>TRX-02 | SLEMAN | NULL <span style="color:#fda4af;">(Invalid)</span></div>' +
+        '<div style="color:#38bdf8;margin-bottom:4px;"><b>2. SILVER (Clean &amp; Validated):</b></div>' +
+        '<div style="color:#cbd5e1;margin-bottom:8px;">TRX-01 | Yogyakarta | 150,000 ✓</div>' +
+        '<div style="color:#4ade80;margin-bottom:4px;"><b>3. FACT (Dashboard Ready):</b></div>' +
+        '<div style="color:#f8fafc;">Region: Yogyakarta | Total: <b>Rp 150,000</b></div>' +
+        '</div>';
+    }
+    // Slash Command: Bersihkan Riwayat Chat (/clear)
+    if (q === '/clear' || q === 'clear' || q === 'hapus chat') {
+      setTimeout(() => {
+        chatBox.innerHTML = '<div class="ai-bot-row"><div class="ai-mini-avatar" aria-hidden="true">' + miniAvatarSvg + '</div><div class="ai-msg-bot">Riwayat obrolan dibersihkan! ✨ Ketik pertanyaan atau ketik <b>/help</b> untuk melihat daftar perintah.</div></div>';
+      }, 150);
+      return 'Membersihkan layar obrolan...';
+    }
+
+    // Slash Command: Daftar Perintah Rahasia (/help)
+    if (q === '/help' || q === 'help' || q === 'perintah') {
+      return '<b>Daftar Perintah Interaktif RickyAI:</b><br>' +
+        '• <code>/sql</code> — Jalankan simulasi query profil Riki<br>' +
+        '• <code>/etl</code> — Lihat simulasi pipeline Bronze → Silver → Fact<br>' +
+        '• <code>/cv</code> — Buka langsung jendela Finder Request CV<br>' +
+        '• <code>/clear</code> — Bersihkan riwayat chat';
+    }
+
+    // Slash Command: Buka Finder CV (/cv)
+    if (q === '/cv') {
+      setTimeout(() => {
+        document.getElementById('secret-ai-overlay').classList.remove('open');
+        const finderBtn = document.getElementById('mac-spec-btn');
+        if (finderBtn) finderBtn.click();
+      }, 600);
+      return 'Membuka jendela <b>Finder · Request CV</b> untukmu... ↗';
+    }
+
+    // Interactive SQL Playground (/sql atau tanya query)
+    if (q === '/sql' || q.includes('query') || q.includes('select ')) {
+      return '<b>Executed Query:</b><br>' +
+        '<div style="font-family:\'DM Mono\',monospace;font-size:11px;background:#090d16;border:1px solid rgba(56,189,248,0.35);border-radius:10px;padding:9px 11px;margin-top:6px;overflow-x:auto;">' +
+        '<div style="color:#7dd3fc;margin-bottom:6px;">SELECT role, company, status<br>FROM riki_career<br>WHERE year >= 2025;</div>' +
+        '<div style="border-top:1px dashed rgba(255,255,255,0.15);padding-top:6px;color:#4ade80;">' +
+        '<b>Result (2 rows · 12ms):</b><br>' +
+        '1. Data Engineer / Backend · PT SOLUSI247 · <span style="color:#86efac;">ACTIVE</span><br>' +
+        '2. Data Engineer (ETL/NiFi) · PT SOLUSI247 · <span style="color:#86efac;">ACTIVE</span>' +
+        '</div></div>';
+    }
+    // Job Fit & Skill Matcher untuk Rekruter / Tech Lead
+    if (q.includes('cocok') || q.includes('match') || q.includes('fit') || q.includes('rekrut') || q.includes('posisi') || q.includes('lowongan')) {
+      return '<b>📊 Hasil Analisis Kecocokan Profil Riki:</b><br>' +
+        '<div style="background:rgba(9,13,22,0.85);border:1px solid rgba(34,197,94,0.35);border-radius:10px;padding:10px 12px;margin-top:6px;font-size:12px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">' +
+        '<span style="color:#4ade80;font-weight:800;">✦ High Match (Data / SQL Engineer)</span>' +
+        '<span style="font-family:\'DM Mono\',monospace;background:rgba(34,197,94,0.18);color:#86efac;padding:2px 6px;border-radius:6px;">3+ Yrs</span>' +
+        '</div>' +
+        '<div style="color:#cbd5e1;line-height:1.5;">' +
+        '✅ <b>Database &amp; SQL:</b> Oracle PL/SQL, PostgreSQL, query tuning &amp; validasi.<br>' +
+        '✅ <b>ETL &amp; Data Flow:</b> Apache NiFi, Python scripting, CI/CD.<br>' +
+        '✅ <b>Big Data &amp; Governance:</b> PySpark (Bronze/Silver/Fact), Hive/HDFS, OpenMetadata.' +
+        '</div></div><br>' +
+        '<button type="button" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\'); document.getElementById(\'mac-spec-btn\').click();" style="padding:6px 12px;border-radius:8px;background:#38bdf8;border:none;color:#0f172a;font-size:11.5px;font-weight:800;cursor:pointer;">Request CV Lengkap ↗</button>';
+    }
+
+    return 'Pertanyaan menarik! Coba tanyakan tentang <b>isi portofolio</b>, <b>tempat kerja</b>, <b>proyek</b>, atau <b>request CV</b> — atau hubungi Riki langsung di <b>rikifendy23@gmail.com</b> 😊';
+    
+  }
+
+
+
+  function addBubble(type, content) {
+    const div = document.createElement('div');
+    div.className = type === 'user' ? 'ai-msg-user' : 'ai-msg-bot';
+    if (type === 'user') div.textContent = content;
+    else div.innerHTML = content;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return div;
+  }
+
+  function askBot(query) {
+    if (!query.trim()) return;
+    addBubble('user', query);
+    const typing = addBubble('bot', '<span style="color:#38bdf8;font-style:italic;">RickyAI sedang mengetik...</span>');
+    setTimeout(() => {
+      typing.innerHTML = getBotReply(query);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 500);
+  }
+
+  chatForm.onsubmit = (e) => {
+    e.preventDefault();
+    const val = chatInput.value;
+    chatInput.value = '';
+    askBot(val);
+  };
+
+  aiOverlay.querySelectorAll('.ai-chip').forEach((chip) => {
+    chip.onclick = () => askBot(chip.getAttribute('data-q'));
+  });
+})();
+(function () {
+  // 1. Tampilkan Jam Real-Time Yogyakarta (WIB) di Banner RickyAI
+  const statusSmall = document.querySelector('.rickyai-banner-info small');
+  function updateJogjaClock() {
+    if (!statusSmall) return;
+    const now = new Date();
+    const wibTime = new Intl.DateTimeFormat('id-ID', {
+      timeZone: 'Asia/Jakarta',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(now);
+    statusSmall.innerHTML = `<span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span> Online · ${wibTime} WIB (Yogyakarta)`;
+  }
+  updateJogjaClock();
+  setInterval(updateJogjaClock, 30000);
+
+  // 2. Sapaan Awal Otomatis Sesuai Jam di Yogyakarta
+  const firstBotMsg = document.querySelector('#ai-chat-box .ai-msg-bot');
+  if (firstBotMsg) {
+    const hourWIB = Number(new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Jakarta',
+      hour: 'numeric',
+      hour12: false
+    }).format(new Date()));
+
+    let greeting = 'Halo!';
+    if (hourWIB >= 4 && hourWIB < 11) greeting = 'Selamat pagi! ☀️';
+    else if (hourWIB >= 11 && hourWIB < 15) greeting = 'Selamat siang! 👋';
+    else if (hourWIB >= 15 && hourWIB < 18) greeting = 'Selamat sore! 🌤️';
+    else greeting = 'Selamat malam! 🌙';
+
+    firstBotMsg.innerHTML = `${greeting} Aku <b>RickyAI</b>. Mau tanya soal isi portofolio, pengalaman kerja di PT SOLUSI247, proyek, atau kontak Riki?`;
+  }
+})();
+  // Suara ketikan lembut bawaan browser (tanpa perlu file audio eksternal)
+   const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let audioCtx = null;
+
+  function unlockAudio() {
+    if (!AudioCtx) return;
+    if (!audioCtx) audioCtx = new AudioCtx();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function playSoftTick() {
+    try {
+      unlockAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      // Gunakan gelombang triangle + pitch drop cepat agar terdengar seperti bunyi ketik / pop mekanikal lembut
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(750 + Math.random() * 150, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.035);
+
+      // Volume dinaikkan agar terdengar jelas di speaker laptop maupun HP
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.035);
+    } catch (e) {}
+  }
+
+  function askBot(query) {
+    if (!query.trim()) return;
+    addBubble('user', query);
+    playSoftTick();
+
+    const typing = addBubble('bot', '<span style="color:#38bdf8;font-style:italic;">RickyAI sedang mengetik...</span>');
+    const fullReply = getBotReply(query);
+
+    setTimeout(() => {
+      // Pisahkan tag HTML dan kata agar format <b>, <br>, & tombol tetap utuh saat mengalir
+      const tokens = fullReply.match(/(<[^>]+>|[^<\s]+|\s+)/g) || [fullReply];
+      let currentHTML = '';
+      let idx = 0;
+
+      const streamTimer = setInterval(() => {
+        if (idx >= tokens.length) {
+          clearInterval(streamTimer);
+          return;
+        }
+        const token = tokens[idx++];
+        currentHTML += token;
+        typing.innerHTML = currentHTML;
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Bunyikan suara ketik halus hanya pada kata (bukan spasi atau tag HTML)
+        if (!token.startsWith('<') && token.trim().length > 0 && idx % 2 === 0) {
+          playSoftTick();
+        }
+      }, 38);
+    }, 350);
+  }
+
+</script>
+
 <footer class="wrap">
   <div class="footer-left">
     <span class="footer-brand-line">
