@@ -471,8 +471,6 @@ body.light .tool-role-badge,
 }
 
 </style>
-
-
   <nav class="wrap nav">
   <style>
   /* Logo Brand Interaktif RikiEfendi.dev */
@@ -600,6 +598,17 @@ body.light .tool-role-badge,
   <a class="dock-item" href="#projects" data-label="Projects" aria-label="Projects" style="overflow: hidden; border: 1px solid rgba(103, 232, 249, 0.28); padding: 0; background: linear-gradient(145deg, rgba(6, 182, 212, 0.28), rgba(14, 116, 144, 0.16));">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="rgba(103, 232, 249, 0.2)"/>
+    </svg>
+  </a>
+
+  <!-- Data Engineering Labs (Taruh di antara Projects & Toolbox) -->
+  <a class="dock-item" href="#labs" data-label="DE Labs" aria-label="Data Engineering Labs" style="overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.35); padding: 0; background: linear-gradient(145deg, rgba(14, 165, 233, 0.28), rgba(59, 130, 246, 0.18));">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Ikon Simpul Pipeline / DAG -->
+      <rect x="3" y="4" width="6" height="6" rx="1.5" fill="rgba(56, 189, 248, 0.2)"/>
+      <rect x="15" y="14" width="6" height="6" rx="1.5" fill="rgba(56, 189, 248, 0.2)"/>
+      <path d="M9 7h3a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2h-1"/>
+      <circle cx="18" cy="6" r="2"/>
     </svg>
   </a>
 
@@ -2192,6 +2201,334 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 </script>
+<style>
+/* Data Engineering Labs Simulator */
+.de-labs-box {
+  padding: 26px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.55));
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+.labs-top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.labs-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.labs-tab {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.labs-tab.active {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: #38bdf8;
+  color: #7dd3fc;
+}
+
+.labs-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #090d16;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.labs-run-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(56, 189, 248, 0.45);
+}
+
+.labs-run-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+/* Diagram Node Arsitektur */
+.labs-dag-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.dag-node {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(9, 13, 22, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dag-node small {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.dag-node strong {
+  display: block;
+  font-size: 13px;
+  color: #e2e8f0;
+}
+
+.dag-node.running {
+  border-color: #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
+}
+
+.dag-node.done {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.dag-node.done small {
+  color: #4ade80;
+}
+
+/* Terminal Live Log */
+.labs-terminal {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: #cbd5e1;
+  min-height: 125px;
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+.labs-footer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.labs-ask-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.labs-ask-ai-btn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .labs-dag-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+<section class="wrap section" id="labs">
+  <div class="sectionhead">
+    <div>
+      <label>03.5 / DATA ENGINEERING LABS</label>
+      <h2>Interactive <span>Pipeline Labs.</span></h2>
+    </div>
+    <p>Simulate how my Airflow-orchestrated PySpark lakehouse and Apache NiFi ETL workflows execute in production.</p>
+  </div>
+
+  <div class="de-labs-box">
+    <div class="labs-top-bar">
+      <div class="labs-tabs" role="tablist">
+        <button type="button" class="labs-tab active" data-pipe="pyspark">⚡ PySpark + Airflow DAG</button>
+        <button type="button" class="labs-tab" data-pipe="nifi">🌊 Apache NiFi ETL Flow</button>
+      </div>
+      <button type="button" class="labs-run-btn" id="labs-run-btn">▶ Run Pipeline</button>
+    </div>
+
+    <!-- 4 Tahap Node Arsitektur -->
+    <div class="labs-dag-grid" id="labs-dag-nodes">
+      <div class="dag-node" id="dag-step-0"><small>TASK 01 · ORCHESTRATION</small><strong>Airflow DAG Trigger</strong></div>
+      <div class="dag-node" id="dag-step-1"><small>TASK 02 · INGESTION</small><strong>Bronze Raw Layer</strong></div>
+      <div class="dag-node" id="dag-step-2"><small>TASK 03 · PYSPARK</small><strong>Silver Cleansing</strong></div>
+      <div class="dag-node" id="dag-step-3"><small>TASK 04 · SERVING</small><strong>Fact &amp; OpenMetadata</strong></div>
+    </div>
+
+    <!-- Live Console Output -->
+    <div class="labs-terminal" id="labs-console">
+      <div style="color:#64748b;"># Ready. Klik tombol "▶ Run Pipeline" di kanan atas untuk memulai simulasi eksekusi...</div>
+    </div>
+
+    <!-- Jembatan Langsung ke RickyAI -->
+    <div class="labs-footer-bar">
+      <span id="labs-status-badge" style="font-family:'DM Mono',monospace;font-size:11.5px;color:#94a3b8;">Status: Idle</span>
+      <button type="button" class="labs-ask-ai-btn" id="labs-explain-ai-btn">
+        ✦ Tanya RickyAI soal Arsitektur Ini ↗
+      </button>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  const runBtn = document.getElementById('labs-run-btn');
+  const consoleEl = document.getElementById('labs-console');
+  const statusEl = document.getElementById('labs-status-badge');
+  const tabs = document.querySelectorAll('.labs-tab');
+  const askAiBtn = document.getElementById('labs-explain-ai-btn');
+  if (!runBtn || !consoleEl) return;
+
+  let currentPipe = 'pyspark';
+  let isRunning = false;
+
+  const configs = {
+    pyspark: {
+      nodes: [
+        ['TASK 01 · AIRFLOW', 'DAG Schedule Trigger'],
+        ['TASK 02 · HDFS', 'Bronze Raw Ingestion'],
+        ['TASK 03 · PYSPARK', 'Silver Cleansing & DQ'],
+        ['TASK 04 · HIVE / LINEAGE', 'Fact Table & OpenMetadata']
+      ],
+      logs: [
+        '[Airflow] Triggering DAG: <b>medallion_lakehouse_daily</b>...',
+        '[Bronze] Reading raw procurement logs into HDFS Parquet partition...',
+        '[PySpark] Deduplicating keys, casting types &amp; filtering NULLs (1,420 valid rows)...',
+        '[Success] Fact table updated &amp; column lineage synced to <b>OpenMetadata</b> ✓'
+      ],
+      aiPrompt: 'Jelaskan arsitektur PySpark dan Airflow di Labs'
+    },
+    nifi: {
+      nodes: [
+        ['PROCESSOR 01 · SOURCE', 'Listen / QueryDatabase'],
+        ['PROCESSOR 02 · ROUTING', 'RouteOnAttribute'],
+        ['PROCESSOR 03 · TRANSFORM', 'ExecuteScript / Jolt'],
+        ['PROCESSOR 04 · TARGET', 'PutDatabaseRecord (SQL)']
+      ],
+      logs: [
+        '[NiFi] FlowFile batch ingested from upstream source system...',
+        '[Routing] Validating schema attributes &amp; routing valid records...',
+        '[Transform] Applying standardized framework rules &amp; Python script...',
+        '[Success] Committed 980 validated records to target database (0 errors) ✓'
+      ],
+      aiPrompt: 'Jelaskan alur ETL Apache NiFi di Labs'
+    }
+  };
+
+  function renderNodes() {
+    const list = configs[currentPipe].nodes;
+    list.forEach((item, idx) => {
+      const el = document.getElementById('dag-step-' + idx);
+      if (el) {
+        el.className = 'dag-node';
+        el.innerHTML = `<small>${item[0]}</small><strong>${item[1]}</strong>`;
+      }
+    });
+    consoleEl.innerHTML = '<div style="color:#64748b;"># Pipeline switched. Klik "▶ Run Pipeline" untuk menjalankan simulasi...</div>';
+    statusEl.textContent = 'Status: Ready';
+    statusEl.style.color = '#94a3b8';
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (isRunning) return;
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentPipe = tab.getAttribute('data-pipe');
+      renderNodes();
+    });
+  });
+
+  runBtn.addEventListener('click', () => {
+    if (isRunning) return;
+    isRunning = true;
+    runBtn.disabled = true;
+    runBtn.textContent = '⏳ Running...';
+    consoleEl.innerHTML = '';
+    statusEl.textContent = 'Status: Executing DAG...';
+    statusEl.style.color = '#f59e0b';
+
+    const logs = configs[currentPipe].logs;
+    logs.forEach((line, idx) => {
+      setTimeout(() => {
+        if (idx > 0) {
+          const prev = document.getElementById('dag-step-' + (idx - 1));
+          if (prev) { prev.classList.remove('running'); prev.classList.add('done'); }
+        }
+        const curr = document.getElementById('dag-step-' + idx);
+        if (curr) curr.classList.add('running');
+
+        const time = new Date().toTimeString().split(' ')[0];
+        consoleEl.innerHTML += `<div><span style="color:#38bdf8;">[${time}]</span> ${line}</div>`;
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+
+        if (idx === logs.length - 1) {
+          setTimeout(() => {
+            if (curr) { curr.classList.remove('running'); curr.classList.add('done'); }
+            isRunning = false;
+            runBtn.disabled = false;
+            runBtn.textContent = '▶ Run Again';
+            statusEl.textContent = 'Status: Completed (0 Failed)';
+            statusEl.style.color = '#4ade80';
+          }, 500);
+        }
+      }, idx * 700);
+    });
+  });
+
+  // Hubungkan Tombol "Tanya RickyAI soal Arsitektur Ini" langsung ke Modal RickyAI
+  if (askAiBtn) {
+    askAiBtn.addEventListener('click', () => {
+      const overlay = document.getElementById('secret-ai-overlay');
+      const input = document.getElementById('ai-chat-input');
+      const form = document.getElementById('ai-chat-form');
+      if (overlay && input && form) {
+        overlay.classList.add('open');
+        input.value = configs[currentPipe].aiPrompt;
+        form.dispatchEvent(new Event('submit'));
+      }
+    });
+  }
+})();
+</script>
 
 <section class="wrap section" id="toolbox">
   <style>
@@ -3180,7 +3517,7 @@ body.light .footer-top-btn,
     const q = text.toLowerCase();
 
     // 0. Identitas AI
-    if (q.includes('kamu') || q.includes('sapa') || q.includes('siapa ini') || q.includes('who are you')) {
+    if (q.includes('kamu') || q.includes('hai') || q.includes('siapa ini') || q.includes('who are you')) {
       return 'Saya <b>RickyAI</b> ✨ — asisten virtual interaktif di portofolio <b>Muhammad Riki Efendi</b>. Saya bisa merangkum profil, insight teknis proyek, atau mengarahkanmu langsung ke bagian yang kamu cari!';
     }
 
@@ -3224,25 +3561,6 @@ body.light .footer-top-btn,
     // 6. Profil Umum Riki
     if (q.includes('siapa') || q.includes('riki') || q.includes('ricky') || q.includes('profil') || q.includes('halo') || q.includes('hai')) {
       return '<b>Muhammad Riki Efendi</b> adalah Data Engineer &amp; SQL Specialist di <b>PT SOLUSI247 Yogyakarta</b> dengan pengalaman 3+ tahun dalam pengolahan data, logika database, dan pipeline ETL.';
-    }
-    // Simulasi Pipeline Bronze -> Silver -> Fact di dalam Chat RickyAI
-    if (q.includes('simulasi') || q.includes('etl') || q.includes('bronze') || q.includes('silver') || q.includes('fact') || q.includes('contoh data')) {
-      return 'Ini contoh bagaimana Riki mengolah data kotor hingga siap analisis (<b>Medallion Pipeline</b>):<br><br>' +
-        '<div style="font-family:\'DM Mono\',monospace;font-size:11px;background:rgba(9,13,22,0.85);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:8px 10px;overflow-x:auto;">' +
-        '<div style="color:#f59e0b;margin-bottom:4px;"><b>1. BRONZE (Raw Input):</b></div>' +
-        '<div style="color:#94a3b8;margin-bottom:8px;">TRX-01 | yogya | 150000<br>TRX-01 | yogya | 150000 <span style="color:#fda4af;">(Duplikat)</span><br>TRX-02 | SLEMAN | NULL <span style="color:#fda4af;">(Invalid)</span></div>' +
-        '<div style="color:#38bdf8;margin-bottom:4px;"><b>2. SILVER (Clean &amp; Validated):</b></div>' +
-        '<div style="color:#cbd5e1;margin-bottom:8px;">TRX-01 | Yogyakarta | 150,000 ✓</div>' +
-        '<div style="color:#4ade80;margin-bottom:4px;"><b>3. FACT (Dashboard Ready):</b></div>' +
-        '<div style="color:#f8fafc;">Region: Yogyakarta | Total: <b>Rp 150,000</b></div>' +
-        '</div>';
-    }
-    // Slash Command: Bersihkan Riwayat Chat (/clear)
-    if (q === '/clear' || q === 'clear' || q === 'hapus chat') {
-      setTimeout(() => {
-        chatBox.innerHTML = '<div class="ai-bot-row"><div class="ai-mini-avatar" aria-hidden="true">' + miniAvatarSvg + '</div><div class="ai-msg-bot">Riwayat obrolan dibersihkan! ✨ Ketik pertanyaan atau ketik <b>/help</b> untuk melihat daftar perintah.</div></div>';
-      }, 150);
-      return 'Membersihkan layar obrolan...';
     }
 
     // Slash Command: Daftar Perintah Rahasia (/help)
@@ -3290,7 +3608,36 @@ body.light .footer-top-btn,
         '</div></div><br>' +
         '<button type="button" onclick="document.getElementById(\'secret-ai-overlay\').classList.remove(\'open\'); document.getElementById(\'mac-spec-btn\').click();" style="padding:6px 12px;border-radius:8px;background:#38bdf8;border:none;color:#0f172a;font-size:11.5px;font-weight:800;cursor:pointer;">Request CV Lengkap ↗</button>';
     }
+  // 1. Penjelasan Khusus dari DE Labs (Taruh di atas pengecekan "etl" umum!)
+    if (q.includes('alur etl apache nifi') || q.includes('nifi di labs')) {
+      return '<b>Arsitektur Apache NiFi ETL Flow:</b><br>' +
+        'Dirancang untuk aliran data otomatis yang terstandarisasi—mulai dari penarikan data sumber (<i>Listen / QueryDatabase</i>), penyaringan atribut (<i>RouteOnAttribute</i>), transformasi berbasis skrip/query, hingga pengiriman tervalidasi ke database tujuan.';
+    }
 
+    if (q.includes('airflow') || q.includes('pyspark dan airflow')) {
+      return '<b>Arsitektur PySpark + Airflow (Medallion Lakehouse):</b><br>' +
+        '• <b>Airflow:</b> Mengatur jadwal eksekusi otomatis &amp; ketergantungan antar-tugas (DAG).<br>' +
+        '• <b>Bronze → Silver → Fact:</b> Data mentah disimpan di HDFS (Bronze), dibersihkan &amp; divalidasi dengan PySpark (Silver), lalu diagregasi menjadi tabel Fact yang tercatat <i>lineage</i>-nya di <b>OpenMetadata</b>.';
+    }
+ // Simulasi Pipeline Bronze -> Silver -> Fact di dalam Chat RickyAI
+    if (q.includes('simulasi') || q.includes('etl') || q.includes('bronze') || q.includes('silver') || q.includes('fact') || q.includes('contoh data')) {
+      return 'Ini contoh bagaimana Riki mengolah data kotor hingga siap analisis (<b>Medallion Pipeline</b>):<br><br>' +
+        '<div style="font-family:\'DM Mono\',monospace;font-size:11px;background:rgba(9,13,22,0.85);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:8px 10px;overflow-x:auto;">' +
+        '<div style="color:#f59e0b;margin-bottom:4px;"><b>1. BRONZE (Raw Input):</b></div>' +
+        '<div style="color:#94a3b8;margin-bottom:8px;">TRX-01 | yogya | 150000<br>TRX-01 | yogya | 150000 <span style="color:#fda4af;">(Duplikat)</span><br>TRX-02 | SLEMAN | NULL <span style="color:#fda4af;">(Invalid)</span></div>' +
+        '<div style="color:#38bdf8;margin-bottom:4px;"><b>2. SILVER (Clean &amp; Validated):</b></div>' +
+        '<div style="color:#cbd5e1;margin-bottom:8px;">TRX-01 | Yogyakarta | 150,000 ✓</div>' +
+        '<div style="color:#4ade80;margin-bottom:4px;"><b>3. FACT (Dashboard Ready):</b></div>' +
+        '<div style="color:#f8fafc;">Region: Yogyakarta | Total: <b>Rp 150,000</b></div>' +
+        '</div>';
+    }
+	    // Slash Command: Bersihkan Riwayat Chat (/clear)
+    if (q === '/clear' || q === 'clear' || q === 'hapus chat') {
+      setTimeout(() => {
+        chatBox.innerHTML = '<div class="ai-bot-row"><div class="ai-mini-avatar" aria-hidden="true">' + miniAvatarSvg + '</div><div class="ai-msg-bot">Riwayat obrolan dibersihkan! ✨ Ketik pertanyaan atau ketik <b>/help</b> untuk melihat daftar perintah.</div></div>';
+      }, 150);
+      return 'Membersihkan layar obrolan...';
+    }
     return 'Pertanyaan menarik! Coba tanyakan tentang <b>isi portofolio</b>, <b>tempat kerja</b>, <b>proyek</b>, atau <b>request CV</b> — atau hubungi Riki langsung di <b>rikifendy23@gmail.com</b> 😊';
     
   }
@@ -3307,14 +3654,36 @@ body.light .footer-top-btn,
     return div;
   }
 
-  function askBot(query) {
-    if (!query.trim()) return;
-    addBubble('user', query);
+    function askBot(query) {
+    const cleanQuery = query.trim();
+    if (!cleanQuery) return;
+
+    // Tangani perintah clear langsung sebelum efek ketik berjalan
+    if (cleanQuery.toLowerCase() === '/clear' || cleanQuery.toLowerCase() === 'clear' || cleanQuery.toLowerCase() === 'hapus chat') {
+      chatBox.innerHTML = '';
+      addBubble('bot', 'Riwayat obrolan dibersihkan! ✨ Ketik pertanyaan atau ketik <b>/help</b> untuk melihat daftar perintah.');
+      return;
+    }
+
+    addBubble('user', cleanQuery);
     const typing = addBubble('bot', '<span style="color:#38bdf8;font-style:italic;">RickyAI sedang mengetik...</span>');
+    const fullReply = getBotReply(cleanQuery);
+
     setTimeout(() => {
-      typing.innerHTML = getBotReply(query);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }, 500);
+      const tokens = fullReply.match(/(<[^>]+>|[^<\s]+|\s+)/g) || [fullReply];
+      let currentHTML = '';
+      let idx = 0;
+
+      const streamTimer = setInterval(() => {
+        if (idx >= tokens.length) {
+          clearInterval(streamTimer);
+          return;
+        }
+        currentHTML += tokens[idx++];
+        typing.innerHTML = currentHTML;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 35);
+    }, 350);
   }
 
   chatForm.onsubmit = (e) => {
